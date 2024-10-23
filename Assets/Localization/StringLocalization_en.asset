@@ -320,11 +320,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13057879494656
-    m_Localized: 'Fonction : '
+    m_Localized: 'Function : '
     m_Metadata:
       m_Items: []
   - m_Id: 13138334633984
-    m_Localized: Move forward one square
+    m_Localized: Add a function
     m_Metadata:
       m_Items: []
   - m_Id: 13606830002176
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15930590133305344
-    m_Localized: Exit
+    m_Localized: Function
     m_Metadata:
       m_Items: []
   - m_Id: 15930701752123392

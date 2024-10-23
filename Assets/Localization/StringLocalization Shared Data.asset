@@ -341,12 +341,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13057879494656
-    m_Key: MainScene/MainCanvas/LeftPanel/LibraryScrollView/Viewport/LibraryPanel/BlocAction/ActionPanelName/Text
+    m_Key: MainScene/MainCanvas/LeftPanel/LibraryScrollView/Viewport/LibraryPanel/BlocFunction/FunctionPanelName/Text
       (TMP)
     m_Metadata:
       m_Items: []
   - m_Id: 13138334633984
-    m_Key: MainScene/MainCanvas/LeftPanel/LibraryScrollView/Viewport/LibraryPanel/BlocAction/ActionPanel/Forward
+    m_Key: MainScene/MainCanvas/LeftPanel/LibraryScrollView/Viewport/LibraryPanel/BlocFunction/FunctionPanel/Fct
     m_Metadata:
       m_Items: []
   - m_Id: 13606830002176
@@ -1241,7 +1241,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15930590133305344
     m_Key: EditorScene/MetadataCanvas/Scroll View/Viewport/Content/BlocksConfiguration/Scroll
-      View/Viewport/Content/editorBlockPrefab (18)/BlockName
+      View/Viewport/Content/editorBlockPrefab (25)/BlockName
     m_Metadata:
       m_Items: []
   - m_Id: 15930701752123392
