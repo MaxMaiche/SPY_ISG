@@ -327,11 +327,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13057879494656
-    m_Localized: 'Fonction : '
+    m_Localized: 'Action : '
     m_Metadata:
       m_Items: []
   - m_Id: 13138334633984
-    m_Localized: Ajouter une fonction
+    m_Localized: Avancer
     m_Metadata:
       m_Items: []
   - m_Id: 13606830002176
