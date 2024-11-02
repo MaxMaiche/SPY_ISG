@@ -188,6 +188,36 @@ public class EditorLevelDataSystem : FSystem {
 						Debug.Log("Warning: Skipped script from file " + levelKey + ". Wrong data!");
 					}
 					break;
+
+				case "function":
+					try
+					{
+						UIRootContainer.EditMode editModeByUser = UIRootContainer.EditMode.Locked;
+						XmlNode editMode = child.Attributes.GetNamedItem("editMode");
+						int tmpValue;
+						if (editMode != null && int.TryParse(editMode.Value, out tmpValue))
+							editModeByUser = (UIRootContainer.EditMode)tmpValue;
+						UIRootContainer.SolutionType typeByUser = UIRootContainer.SolutionType.Undefined;
+						XmlNode typeNode = child.Attributes.GetNamedItem("type");
+						if (typeNode != null && int.TryParse(typeNode.Value, out tmpValue))
+							typeByUser = (UIRootContainer.SolutionType)tmpValue;
+						XmlNode name = child.Attributes.GetNamedItem("outputLine");
+						if (name == null)
+							name = child.Attributes.GetNamedItem("name"); // for retrocompatibility
+
+						// Ask to create function
+						FunctionToLoad ftl = MainLoop.instance.gameObject.AddComponent<FunctionToLoad>();
+						ftl.functionNode = child;
+						ftl.functionName = Utility.extractLocale(name.Value);
+						ftl.editMode = editModeByUser;
+						ftl.type = typeByUser;
+						MainLoop.instance.StartCoroutine(delayRefreshMainLoop());
+					}
+					catch
+					{
+						Debug.Log("Warning: Skipped function from file " + levelKey + ". Wrong data!");
+					}
+					break;
 			}
 		}
 	}

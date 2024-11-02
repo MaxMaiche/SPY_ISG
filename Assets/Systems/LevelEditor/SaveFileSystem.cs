@@ -24,6 +24,7 @@ public class SaveFileSystem : FSystem
 	public TMP_InputField score3;
 
 	public GameObject editableContainer;
+	public GameObject editableContainerFunction;
 	public LevelData levelData;
 	public PaintableGrid paintableGrid;
 
@@ -283,6 +284,26 @@ public class SaveFileSystem : FSystem
 			}
 			levelExport += "\t</script>\n\n";
 		}
+
+		// export function
+		for (int i = 0; i < editableContainerFunction.transform.childCount; i++)
+		{
+			Transform editorViewportScriptContainer = editableContainer.transform.GetChild(i).Find("ScriptContainer");
+			string scriptName = editorViewportScriptContainer.Find("Header").Find("ContainerName").GetComponent<TMP_InputField>().text;
+			TMP_Dropdown editMode = editorViewportScriptContainer.Find("LevelEditorPanel").Find("EditMode_Dropdown").GetComponent<TMP_Dropdown>();
+			TMP_Dropdown type = editorViewportScriptContainer.Find("LevelEditorPanel").Find("ProgType_Dropdown").GetComponent<TMP_Dropdown>();
+			levelExport += "\t<function outputLine=\""+ scriptName + "\" editMode=\""+ editMode.value + "\" type=\""+ type.value + "\">\n";
+
+			// on ignore les fils sans Highlightable
+			for (int j = 0; j < editorViewportScriptContainer.childCount; j++)
+			{
+				Highlightable h = editorViewportScriptContainer.GetChild(j).GetComponent<Highlightable>();
+				if (h != null)
+					levelExport += Utility.exportBlockToString(h, null, Utility.ExportType.XML, 2);
+			}
+			levelExport += "\t</function>\n\n";
+		}
+
 
 		levelExport += "</level>";
 		return levelExport;

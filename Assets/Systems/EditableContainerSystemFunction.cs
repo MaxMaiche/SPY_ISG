@@ -31,7 +31,7 @@ public class EditableContainerSystemFunction : FSystem
 {
 	// Les familles
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(AgentEdit), typeof(ScriptRef))); // On r�cup�re les agents pouvant �tre �dit�s
-	private Family f_scriptContainer = FamilyManager.getFamily(new AllOfComponents(typeof(UIRootContainer)), new AnyOfTags("ScriptConstructor")); // Les containers de scripts
+	private Family f_scriptContainer = FamilyManager.getFamily(new AllOfComponents(typeof(UIRootContainer)), new AnyOfTags("FunctionConstructor")); // Les containers de scripts
 	private Family f_refreshSize = FamilyManager.getFamily(new AllOfComponents(typeof(RefreshSizeOfEditableContainer)));
 	private Family f_addSpecificContainer = FamilyManager.getFamily(new AllOfComponents(typeof(AddSpecificContainer)));
 	private Family f_gameLoaded = FamilyManager.getFamily(new AllOfComponents(typeof(GameLoaded)));
@@ -192,12 +192,12 @@ public class EditableContainerSystemFunction : FSystem
 				for (int i = EditableCanvas.GetComponent<EditableCanvacComponent>().nbViewportContainer; !nameOk; i++)
 				{
 					// Si le nom n'est pas d�j� utilis� on nomme le nouveau container de cette fa�on
-					if (!nameContainerUsed("Script" + i))
+					if (!nameContainerUsed("Fonction" + i))
 					{
-						cloneContainer.GetComponentInChildren<UIRootContainer>().scriptName = "Script" + i;
+						cloneContainer.GetComponentInChildren<UIRootContainer>().scriptName = "Fonction" + i;
 						// On affiche le bon nom sur le container
-						cloneContainer.GetComponentInChildren<TMP_InputField>().text = "Script" + i;
-						name = "Script" + i;
+						cloneContainer.GetComponentInChildren<TMP_InputField>().text = "Fonction" + i;
+						name = "Fonction" + i;
 						nameOk = true;
 					}
 				}
