@@ -59,7 +59,7 @@ public class ScriptGenerator : FSystem {
 			FunctionToLoad [] scriptsToLoad = go.GetComponents<FunctionToLoad>();
 			foreach (FunctionToLoad ftl in scriptsToLoad)
 			{
-				readXMLScript(ftl.functionNode, ftl.functionName, ftl.editMode, ftl.type);
+				readXMLFunction(ftl.functionNode, ftl.functionName, ftl.editMode, ftl.type);
 				GameObjectManager.removeComponent(ftl);
 			}
         }
@@ -110,6 +110,27 @@ public class ScriptGenerator : FSystem {
 				Debug.LogWarning("Script \"" + name + "\" not created because another one already exists. Only one script with the same name is possible.");
 			}
 		}
+	}
+
+	private void readXMLFunction(XmlNode functionNode, string name, UIRootContainer.EditMode editMode, UIRootContainer.SolutionType type)
+	{
+		if (functionNode != null)
+		{
+			// Look for another script with the same name. If one already exists, we don't create one more.
+			if (!scriptNameUsed.Contains(name))
+			{
+				List<GameObject> script = new List<GameObject>();
+				foreach (XmlNode actionNode in functionNode.ChildNodes)
+					script.Add(readXMLInstruction(actionNode));
+				GameObjectManager.addComponent<AddSpecificContainer>(MainLoop.instance.gameObject, new { title = name, editState = editMode, typeState = type, script = script });
+				
+			}
+			else
+			{
+				Debug.LogWarning("Script \"" + name + "\" not created because another one already exists. Only one script with the same name is possible.");
+			}
+		}
+
 	}
 
 	private GameObject getLibraryItemByName(string itemName)
