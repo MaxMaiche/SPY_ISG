@@ -33,7 +33,7 @@ public class EditableContainerSystemFunction : FSystem
 	private Family f_agent = FamilyManager.getFamily(new AllOfComponents(typeof(AgentEdit), typeof(ScriptRef))); // On r�cup�re les agents pouvant �tre �dit�s
 	private Family f_scriptContainer = FamilyManager.getFamily(new AllOfComponents(typeof(UIRootContainer)), new AnyOfTags("FunctionConstructor")); // Les containers de scripts
 	private Family f_refreshSize = FamilyManager.getFamily(new AllOfComponents(typeof(RefreshSizeOfEditableContainer)));
-	private Family f_addSpecificContainer = FamilyManager.getFamily(new AllOfComponents(typeof(AddSpecificContainer)));
+	private Family f_addSpecificContainer = FamilyManager.getFamily(new AllOfComponents(typeof(AddSpecificContainerFunction)));
 	private Family f_gameLoaded = FamilyManager.getFamily(new AllOfComponents(typeof(GameLoaded)));
 	private Family f_forceRemoveContainer = FamilyManager.getFamily(new AllOfComponents(typeof(ForceRemoveContainer)));
 	private Family f_newEnd = FamilyManager.getFamily(new AllOfComponents(typeof(NewEnd)));
@@ -132,7 +132,7 @@ public class EditableContainerSystemFunction : FSystem
 					GameObjectManager.removeComponent(trigger);
 		}
 		foreach (GameObject go in f_addSpecificContainer)
-			foreach (AddSpecificContainer asc in go.GetComponents<AddSpecificContainer>())
+			foreach (AddSpecificContainerFunction asc in go.GetComponents<AddSpecificContainerFunction>())
 			{
 				addSpecificContainer(asc.title, asc.editState, asc.typeState, asc.script);
 				GameObjectManager.removeComponent(asc);

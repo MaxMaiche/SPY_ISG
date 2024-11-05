@@ -288,7 +288,7 @@ public class SaveFileSystem : FSystem
 		// export function
 		for (int i = 0; i < editableContainerFunction.transform.childCount; i++)
 		{
-			Transform editorViewportScriptContainer = editableContainer.transform.GetChild(i).Find("ScriptContainer");
+			Transform editorViewportScriptContainer = editableContainerFunction.transform.GetChild(i).Find("ScriptContainer");
 			string scriptName = editorViewportScriptContainer.Find("Header").Find("ContainerName").GetComponent<TMP_InputField>().text;
 			TMP_Dropdown editMode = editorViewportScriptContainer.Find("LevelEditorPanel").Find("EditMode_Dropdown").GetComponent<TMP_Dropdown>();
 			TMP_Dropdown type = editorViewportScriptContainer.Find("LevelEditorPanel").Find("ProgType_Dropdown").GetComponent<TMP_Dropdown>();

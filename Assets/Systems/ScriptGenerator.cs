@@ -53,6 +53,16 @@ public class ScriptGenerator : FSystem {
 				GameObjectManager.removeComponent(stl);
 			}
         }
+
+		foreach(GameObject go in f_decodeXMLFunction)
+        {
+			FunctionToLoad [] scriptsToLoad = go.GetComponents<FunctionToLoad>();
+			foreach (FunctionToLoad ftl in scriptsToLoad)
+			{
+				readXMLScript(ftl.functionNode, ftl.functionName, ftl.editMode, ftl.type);
+				GameObjectManager.removeComponent(ftl);
+			}
+        }
     }
 
     // Lit le XML d'un script est g�n�re les game objects des instructions
