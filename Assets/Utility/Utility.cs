@@ -666,10 +666,7 @@ public static class Utility
 				}
 			}else if (script is Function){ // cas d'une fonction
 				{	
-					GameObject goFun = script.gameObject;
-					GameObject header = goFun.transform.Find("Header").gameObject;
-					GameObject inputField = header.transform.Find("InputField").gameObject;
-					string functionName = inputField.GetComponent<TMP_InputField>().text;
+					string functionName = (script as Function).functionName;
 					Debug.Log("Function "+functionName);
 					export += indent(indentLevel) + "<function name=\"" + functionName + "\"/>\n";
 				}
