@@ -774,4 +774,27 @@ public class DragDropSystem : FSystem
 			});
 		}
 	}
+
+	// public void onlyString(GameObject functionBlock, string newValue)
+	// {
+	// 	string oldValue = functionBlock.GetComponent<Function>().functionName;
+	// 	functionBlock.GetComponent<Function>().functionName = newValue;
+	// 	// compute context
+	// 	string context = exportEditableScriptToString(functionBlock.GetComponentInParent<UIRootContainer>().transform, functionBlock);
+
+	// 	// g�n�rer une trace seulement sur la scene principale
+	// 	if (oldValue != newValue && SceneManager.GetActiveScene().name == "MainScene")
+	// 	{
+	// 		GameObjectManager.addComponent<ActionPerformedForLRS>(functionBlock, new
+	// 		{
+	// 			verb = "modified",
+	// 			objectType = "block",
+	// 			activityExtensions = new Dictionary<string, string>() {
+	// 			{ "context", context },
+	// 			{ "oldValue", oldValue},
+	// 			{ "value", newValue}
+	// 		}
+	// 		});
+	// 	}
+	// }
 }

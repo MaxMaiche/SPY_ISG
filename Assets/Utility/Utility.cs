@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Xml;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Localization.Settings;
@@ -664,7 +665,17 @@ public static class Utility
 					export += exportType == ExportType.PseudoCode ? " }" : indent(indentLevel) + "</elseContainer>\n" + indent(indentLevel - 1) + "</ifElse>\n";
 				}
 			}else if (script is Function){ // cas d'une fonction
-				
+				{	
+					GameObject goFun = script.gameObject;
+					GameObject header = goFun.transform.Find("Header").gameObject;
+					GameObject inputField = header.transform.Find("InputField").gameObject;
+					string functionName = inputField.GetComponent<TMP_InputField>().text;
+					Debug.Log("Function "+functionName);
+					export += indent(indentLevel) + "<function name=\"" + functionName + "\"/>\n";
+				}
+			}
+			else{
+				Debug.LogError("Unknown type of script: " + script.GetType());
 			}
 			return export;
 		}

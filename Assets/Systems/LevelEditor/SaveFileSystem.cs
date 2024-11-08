@@ -121,6 +121,9 @@ public class SaveFileSystem : FSystem
 	private void saveToFile()
 	{
 		string levelExport = buildLevelContent();
+		//print Level content
+		Debug.Log(levelExport);
+
 
 		// generate XML structure from string
 		XmlDocument doc = new XmlDocument();

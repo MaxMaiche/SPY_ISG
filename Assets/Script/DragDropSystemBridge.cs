@@ -48,6 +48,10 @@ public class DragDropSystemBridge : MonoBehaviour
     {
         DragDropSystem.instance.onlyPositiveInteger(gameObject, newValue);
     }
+    // public void onlyString(string newValue)
+    // {
+    //     DragDropSystem.instance.onlyString(gameObject, newValue);
+    // }
     public void setNextFocusedGameObject(GameObject go)
     {
         EventSystem.current.SetSelectedGameObject(go);
