@@ -178,6 +178,7 @@ public class EditableContainerSystemFunction : FSystem
 			// Puis on imcr�mente le nombre de viewport contenue dans l'�ditable
 			EditableCanvas.GetComponent<EditableCanvacComponent>().nbViewportContainer += 1;
 
+
 			// Affiche le bon nom
 			if (name != "")
 			{

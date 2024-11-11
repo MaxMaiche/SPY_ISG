@@ -450,9 +450,11 @@ public class LevelGenerator : FSystem {
 		foreach (XmlNode limitNode in limitsNode.ChildNodes)
 		{
 			actionName = limitNode.Attributes.GetNamedItem("blockType").Value;
+			Debug.Log("Limit for " + actionName+ getLibraryItemByName(actionName));
 			// check if a GameObject exists with the same name
 			if (getLibraryItemByName(actionName) && !gameData.actionBlockLimit.ContainsKey(actionName)){
 				gameData.actionBlockLimit[actionName] = int.Parse(limitNode.Attributes.GetNamedItem("limit").Value);
+				
 			}
 		}
 	}

@@ -130,7 +130,7 @@ public static class Utility
 	// We create an editable block from a library item (without binded it to FYFY, depending on context the object has to be binded or not)
 	public static GameObject createEditableBlockFromLibrary(GameObject element, GameObject targetCanvas)
 	{
-		Debug.Log(element.name);
+		Debug.Log(element.name + " " + targetCanvas.name);
 		// On r�cup�re le prefab associ� � l'action de la librairie
 		GameObject prefab = element.GetComponent<ElementToDrag>().actionPrefab;
 		// Create a dragged GameObject
