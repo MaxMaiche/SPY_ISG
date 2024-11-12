@@ -123,14 +123,16 @@ public class EditableContainerSystemFunction : FSystem
 
     protected override void onProcess(int familiesUpdateCount)
     {
-        if (f_refreshSize.Count > 0) // better to process like this than callback on family (here we are sure to process all components
-        {
-			// Update size of parent GameObject
-			MainLoop.instance.StartCoroutine(setEditableSize(false));
-			foreach(GameObject go in f_refreshSize)
-				foreach (RefreshSizeOfEditableContainer trigger in go.GetComponents<RefreshSizeOfEditableContainer>())
-					GameObjectManager.removeComponent(trigger);
-		}
+		// TODO MAYBE SI PROBLEME DE SIZE DES CONTAINERS
+		// if (f_refreshSize.Count > 0) // better to process like this than callback on family (here we are sure to process all components
+        // {
+		// 	// Update size of parent GameObject
+		// 	MainLoop.instance.StartCoroutine(setEditableSize(false));
+		// 	foreach(GameObject go in f_refreshSize)
+		// 		foreach (RefreshSizeOfEditableContainer trigger in go.GetComponents<RefreshSizeOfEditableContainer>())
+		// 			GameObjectManager.removeComponent(trigger);
+		// }
+		
 		foreach (GameObject go in f_addSpecificContainer)
 			foreach (AddSpecificContainerFunction asc in go.GetComponents<AddSpecificContainerFunction>())
 			{

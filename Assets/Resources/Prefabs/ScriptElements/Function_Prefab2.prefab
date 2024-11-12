@@ -421,7 +421,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets:
   - {fileID: 6458784915697038195}
-  - {fileID: 0}
 --- !u!114 &-3197838140218440051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +767,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6195889844468152799}
         m_TargetAssemblyTypeName: DragDropSystemBridge, Assembly-CSharp
-        m_MethodName: onlyPositiveInteger
+        m_MethodName: onlyFunctionName
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -746,56 +746,53 @@ public class DragDropSystem : FSystem
 	// see inputFiels in ForBloc prefab in inspector
 	public void onlyPositiveInteger(GameObject forBlock, string newValue)
 	{
-		if (forBlock.GetComponent<ForControl>()){
-			int oldValue = forBlock.GetComponent<ForControl>().nbFor;
-			Transform input = forBlock.transform.Find("Header");
-			int res;
-			bool success = Int32.TryParse(newValue, out res);
-			if (!success || (success && Int32.Parse(newValue) <= 0))
-			{
-				input.GetComponentInChildren<TMP_InputField>().text = "0";
-				res = 0;
-			}
-			forBlock.GetComponent<ForControl>().nbFor = res;
-			// compute context
-			string context = exportEditableScriptToString(forBlock.GetComponentInParent<UIRootContainer>().transform, forBlock);
 
-			// g�n�rer une trace seulement sur la scene principale
-			if (res != oldValue && SceneManager.GetActiveScene().name == "MainScene")
-			{
-				GameObjectManager.addComponent<ActionPerformedForLRS>(forBlock, new
-				{
-					verb = "modified",
-					objectType = "block",
-					activityExtensions = new Dictionary<string, string>() {
-					{ "context", context },
-					{ "oldValue", oldValue.ToString()},
-					{ "value", res.ToString()}
-				}
-				});
-			}
-		}else{
-			GameObject functionBlock = forBlock;
-			string oldValue = functionBlock.GetComponent<Function>().functionName;
-			functionBlock.GetComponent<Function>().functionName = newValue;
-			// compute context
-			string context = exportEditableScriptToString(functionBlock.GetComponentInParent<UIRootContainer>().transform, functionBlock);
+		int oldValue = forBlock.GetComponent<ForControl>().nbFor;
+		Transform input = forBlock.transform.Find("Header");
+		int res;
+		bool success = Int32.TryParse(newValue, out res);
+		if (!success || (success && Int32.Parse(newValue) <= 0))
+		{
+			input.GetComponentInChildren<TMP_InputField>().text = "0";
+			res = 0;
+		}
+		forBlock.GetComponent<ForControl>().nbFor = res;
+		// compute context
+		string context = exportEditableScriptToString(forBlock.GetComponentInParent<UIRootContainer>().transform, forBlock);
 
-			// g�n�rer une trace seulement sur la scene principale
-			if (oldValue != newValue && SceneManager.GetActiveScene().name == "MainScene")
+		// g�n�rer une trace seulement sur la scene principale
+		if (res != oldValue && SceneManager.GetActiveScene().name == "MainScene")
+		{
+			GameObjectManager.addComponent<ActionPerformedForLRS>(forBlock, new
 			{
-				GameObjectManager.addComponent<ActionPerformedForLRS>(functionBlock, new
-				{
-					verb = "modified",
-					objectType = "block",
-					activityExtensions = new Dictionary<string, string>() {
-					{ "context", context },
-					{ "oldValue", oldValue},
-					{ "value", newValue}
-				}
-				});
+				verb = "modified",
+				objectType = "block",
+				activityExtensions = new Dictionary<string, string>() {
+				{ "context", context },
+				{ "oldValue", oldValue.ToString()},
+				{ "value", res.ToString()}
 			}
+			});
+		}
+	}
 
+	public void onlyFunctionName(GameObject funBlock, string newValue)
+	{
+		string oldValue = funBlock.GetComponent<Function>().functionName;
+		funBlock.GetComponent<Function>().functionName  = newValue;
+
+		if (newValue != oldValue && SceneManager.GetActiveScene().name == "MainScene")
+		{
+			GameObjectManager.addComponent<ActionPerformedForLRS>(funBlock, new
+			{
+				verb = "modified",
+				objectType = "block",
+				activityExtensions = new Dictionary<string, string>() {
+				{ "context", "Rename Function Name" },
+				{ "oldValue", oldValue.ToString()},
+				{ "value", newValue.ToString()}
+			}
+			});
 		}
 	}
 

@@ -354,6 +354,9 @@ public class UISystem : FSystem {
 				robot.GetComponent<ScriptRef>().executablePanel.transform.Find("Header").Find("Toggle").GetComponent<Toggle>().isOn = true;
 			}
 		}
+
+		// TODO foreach Container Fonction
+
 		
 		// On notifie les systèmes comme quoi le panneau d'éxecution est rempli
 		GameObjectManager.addComponent<ExecutablePanelReady>(MainLoop.instance.gameObject);

@@ -180,6 +180,8 @@ public class CurrentActionManager : FSystem
 			{
 				// always return firstchild of this ForeverControl
 				return rec_getFirstActionOf(action.GetComponent<ForeverControl>().firstChild, agent);
+			}else if (action.GetComponent<Function>()){
+				// TODO
 			}
 		}
 		return null;
@@ -221,7 +223,7 @@ public class CurrentActionManager : FSystem
 		string key = ele.key;
 		bool ifok = false;
 		// get absolute target position depending on player orientation and relative direction to observe
-		// On commence par identifier quelle case doit être regardée pour voir si la condition est respectée
+		// On commence par identifier quelle case doit ï¿½tre regardï¿½e pour voir si la condition est respectï¿½e
 		Vector2 vec = new Vector2();
 		switch (agent.GetComponent<Direction>().direction)
 		{
@@ -330,7 +332,7 @@ public class CurrentActionManager : FSystem
 				}
 				break;
 		}
-		// notification de l'évaluation 
+		// notification de l'ï¿½valuation 
 		GameObject notif = ele.target.transform.Find(ifok ? "true" : "false").gameObject;
 		GameObjectManager.setGameObjectState(notif, true);
 		MainLoop.instance.StartCoroutine(Utility.pulseItem(notif));
