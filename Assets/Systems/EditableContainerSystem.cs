@@ -366,6 +366,7 @@ public class EditableContainerSystem : FSystem
 	public void newNameContainer(string newName)
 	{
 		string oldName = containerSelected.scriptName;
+		//Debug.Log("newNameContainer: " + oldName + " -> " + newName);
 		if (oldName != newName)
 		{
 			// Si le nom n'est pas utilis� et que le mode n'est pas locked

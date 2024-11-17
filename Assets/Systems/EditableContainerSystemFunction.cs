@@ -184,6 +184,7 @@ public class EditableContainerSystemFunction : FSystem
 			// Affiche le bon nom
 			if (name != "")
 			{
+				//Debug.Log("addSpecificContainer: " + name);
 				// On d�finie son nom � celui de l'agent
 				cloneContainer.GetComponentInChildren<UIRootContainer>().scriptName = name;
 				// On affiche le bon nom sur le container
@@ -365,26 +366,16 @@ public class EditableContainerSystemFunction : FSystem
 	}
 
 	// Rename the script window
-	// See ContainerName in ViewportScriptContainer prefab in editor
+	// See ContainerName in ViewportFunctionContainer prefab in editor
 	public void newNameContainer(string newName)
 	{
 		string oldName = containerSelected.scriptName;
+		Debug.Log("newNameContainer: " + oldName + " -> " + newName);
 		if (oldName != newName)
 		{
 			// Si le nom n'est pas utilis� et que le mode n'est pas locked
 			if (!nameContainerUsed(newName) && containerSelected.editState != UIRootContainer.EditMode.Locked)
 			{
-				// Si le container est en mode synch, rechercher le ou les agents associ�s
-				if (containerSelected.editState == UIRootContainer.EditMode.Synch)
-				{
-					// On met � jour le nom de tous les agents qui auraient le m�me nom pour garder l'association avec le container editable
-					foreach (GameObject agent in f_agent)
-						if (agent.GetComponent<AgentEdit>().associatedScriptName.ToLower() == oldName.ToLower())
-						{
-							agent.GetComponent<AgentEdit>().associatedScriptName = newName;
-							agent.GetComponent<ScriptRef>().executablePanel.GetComponentInChildren<TMP_InputField>().text = newName;
-						}
-				}
 				// On change pour son nouveau nom
 				containerSelected.scriptName = newName;
 				containerSelected.transform.Find("Header").Find("ContainerName").GetComponent<TMP_InputField>().text = newName;
@@ -394,7 +385,7 @@ public class EditableContainerSystemFunction : FSystem
 					GameObjectManager.addComponent<ActionPerformedForLRS>(containerSelected.gameObject, new
 					{
 						verb = "renamed",
-						objectType = "script",
+						objectType = "function",
 						activityExtensions = new Dictionary<string, string>() {
 						{ "oldValue", oldName },
 						{ "value", newName }
