@@ -181,7 +181,19 @@ public class CurrentActionManager : FSystem
 				// always return firstchild of this ForeverControl
 				return rec_getFirstActionOf(action.GetComponent<ForeverControl>().firstChild, agent);
 			}else if (action.GetComponent<Function>()){
-				// TODO
+				// - Afficher le executeFunctionPanel
+				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(true);
+				// - Recuperer le nom de la fonction
+				string functionName = action.GetComponent<Function>().functionName;
+				// - recuperer la fonction correspondante
+				GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
+				// - set la fonction courante
+				agent.GetComponent<ScriptRef>().executableFunction = function;
+				// - set fonction courante dans le panel
+				agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
+				// - Recuperer le premier enfant de la fonction
+				return rec_getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
+				// Peut etre gérer la fin de la fonction
 			}
 		}
 		return null;

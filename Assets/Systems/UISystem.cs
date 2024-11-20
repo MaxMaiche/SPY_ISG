@@ -17,7 +17,8 @@ public class UISystem : FSystem {
 	private Family f_player = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef), typeof(Position)), new AnyOfTags("Player"));
 	private Family f_currentActions = FamilyManager.getFamily(new AllOfComponents(typeof(BasicAction), typeof(LibraryItemRef), typeof(CurrentAction)));
 	private Family f_agents = FamilyManager.getFamily(new AllOfComponents(typeof(ScriptRef)));
-	private Family f_viewportContainer = FamilyManager.getFamily(new AllOfComponents(typeof(ViewportContainer))); // Les containers viewport
+	private Family f_viewportContainer = FamilyManager.getFamily(new AllOfComponents(typeof(ViewportContainer)),new AnyOfTags("ScriptViewport")); // Les containers viewport
+	private Family f_viewportContainerFunction = FamilyManager.getFamily(new AllOfComponents(typeof(ViewportContainer)),new AnyOfTags("FunctionViewport")); // Les containers viewport des scripts
 	private Family f_scriptContainer = FamilyManager.getFamily(new AllOfComponents(typeof(UIRootContainer)), new AnyOfTags("ScriptConstructor")); // Les containers de scripts
 	private Family f_removeButton = FamilyManager.getFamily(new AllOfComponents(typeof(Button)), new AnyOfTags("RemoveButton")); // Les petites poubelles de chaque panneau d'édition
 	private Family f_pointerOver = FamilyManager.getFamily(new AllOfComponents(typeof(PointerOver)), new AllOfProperties(PropertyMatcher.PROPERTY.ACTIVE_IN_HIERARCHY)); // Tous les objets pointés
@@ -210,6 +211,7 @@ public class UISystem : FSystem {
 	public void setExecutionView(bool value){
 		// Toggle library and editable panel
 		GameObjectManager.setGameObjectState(canvas.transform.Find("LeftPanel").gameObject, !value);
+		GameObjectManager.setGameObjectState(canvas.transform.Find("RightPanel").gameObject, !value);
 		// Show sentinel panels and toggle player panels
 		foreach (GameObject agent in f_agents)
 			if (agent.GetComponent<DetectRange>())
@@ -321,6 +323,7 @@ public class UISystem : FSystem {
 				child.SetParent(null); // beacause destroying is not immediate, we remove this child from its parent, then Unity can take the time he wants to destroy GameObject
 				GameObject.Destroy(child.gameObject);
 			}
+			// TODO Free Bibliofunction + ContainerFunction
 		}
 	}
 
@@ -353,6 +356,28 @@ public class UISystem : FSystem {
 				// On développe le panneau au cas où il aurait été réduit
 				robot.GetComponent<ScriptRef>().executablePanel.transform.Find("Header").Find("Toggle").GetComponent<Toggle>().isOn = true;
 			}
+
+			// On récupére le container de fonctions
+			GameObject biblioFunction = new("BiblioFunction");
+			// instanciate biblioFunction
+			robot.GetComponent<ScriptRef>().biblioFunction = biblioFunction;
+			biblioFunction.transform.SetParent(robot.GetComponent<ScriptRef>().executableFunctionPanel.transform);
+
+			// On ajoute toutes les fonctions du right panel dans le container de fonctions
+			foreach (GameObject container in f_viewportContainerFunction)
+			{
+				// Recupérer le nom de la fonction
+				string functionName = container.GetComponentInChildren<UIRootContainer>().scriptName;
+				// Instaciate new container for each function
+				GameObject newContainer = new(functionName);
+				newContainer.transform.SetParent(biblioFunction.transform);
+
+				// On ajoute les fonctions dans le container de fonctions
+				Utility.fillExecutablePanel(container, newContainer,"");
+				foreach (Transform child in newContainer.transform)
+					GameObjectManager.bind(child.gameObject);
+			}
+					
 		}
 
 		// TODO foreach Container Fonction

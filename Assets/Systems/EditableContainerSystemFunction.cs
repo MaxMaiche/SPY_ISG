@@ -433,19 +433,21 @@ public class EditableContainerSystemFunction : FSystem
 				container.transform.Find("Header").Find("ContainerName").GetComponent<TMP_InputField>().image.color = new Color(1f, 0.4f, 0.28f, 1f);
 		}
 
-		// On fait la m�me chose pour les agents
-		foreach (GameObject agent in f_agent)
-		{
-			bool nameSame = false;
-			foreach (GameObject container in f_scriptContainer)
-				if (container.GetComponent<UIRootContainer>().scriptName.ToLower() == agent.GetComponent<AgentEdit>().associatedScriptName.ToLower())
-					nameSame = true;
+		// TODO GERE SAME NOM FONCTION ET APPEL FONCTION
 
-			// Si m�me nom trouv� on met l'arri�re transparent
-			if (nameSame)
-				agent.GetComponent<ScriptRef>().executablePanel.GetComponentInChildren<TMP_InputField>(true).image.color = new Color(1f, 1f, 1f, 1f);
-			else // sinon rouge 
-				agent.GetComponent<ScriptRef>().executablePanel.GetComponentInChildren<TMP_InputField>(true).image.color = new Color(1f, 0.4f, 0.28f, 1f);
-		}
+		// On fait la m�me chose pour les agents
+		// foreach (GameObject agent in f_agent)
+		// {
+		// 	bool nameSame = false;
+		// 	foreach (GameObject container in f_scriptContainer)
+		// 		if (container.GetComponent<UIRootContainer>().scriptName.ToLower() == agent.GetComponent<AgentEdit>().associatedScriptName.ToLower())
+		// 			nameSame = true;
+
+		// 	// Si m�me nom trouv� on met l'arri�re transparent
+		// 	if (nameSame)
+		// 		agent.GetComponent<ScriptRef>().executablePanel.GetComponentInChildren<TMP_InputField>(true).image.color = new Color(1f, 1f, 1f, 1f);
+		// 	else // sinon rouge 
+		// 		agent.GetComponent<ScriptRef>().executablePanel.GetComponentInChildren<TMP_InputField>(true).image.color = new Color(1f, 0.4f, 0.28f, 1f);
+		// }
 	}
 }

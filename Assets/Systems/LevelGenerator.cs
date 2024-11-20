@@ -7,6 +7,7 @@ using TMPro;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 /// <summary>
 /// Read XML file and load level
@@ -299,12 +300,17 @@ public class LevelGenerator : FSystem {
 		//add new container to entity
 		ScriptRef scriptref = entity.GetComponent<ScriptRef>();
 		GameObject executablePanel = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/ExecutablePanel") as GameObject, scriptContainer.gameObject.transform, false);
+		GameObject executableFunctionPanel = GameObject.Instantiate<GameObject>(Resources.Load ("Prefabs/ExecutableFunctionPanel") as GameObject, scriptContainer.gameObject.transform, false);
 		// Associer � l'agent l'UI container
 		scriptref.executablePanel = executablePanel;
+		scriptref.executableFunctionPanel = executableFunctionPanel;
 		// Associer � l'agent le script container
 		scriptref.executableScript = executablePanel.transform.Find("Scroll View").Find("Viewport").Find("ScriptContainer").gameObject;
+		scriptref.executableFunction = executableFunctionPanel.transform.Find("Scroll View").Find("Viewport").Find("ScriptContainer").gameObject;
 		// Association de l'agent au script de gestion des fonctions
 		executablePanel.GetComponentInChildren<LinkedWith>(true).target = entity;
+		executableFunctionPanel.GetComponentInChildren<LinkedWith>(true).target = entity; // Maybe ?
+	
 
 		// On va charger l'image et le nom de l'agent selon l'agent (robot, ennemi etc...)
 		if (type == "robot" || type == "player")
@@ -338,7 +344,9 @@ public class LevelGenerator : FSystem {
 		scriptref.executablePanel.transform.Find("Scroll View").GetComponent<Image>().color = ((type == "robot" || type == "player") ? ac.playerBackground : ac.droneBackground);
 
 		executablePanel.SetActive(false);
+		executableFunctionPanel.SetActive(false);
 		GameObjectManager.bind(executablePanel);
+		GameObjectManager.bind(executableFunctionPanel);
 		GameObjectManager.bind(entity);
 		return entity;
 	}

@@ -21,6 +21,8 @@ TagManager:
   - ScriptEditorCanvas
   - ConditionNotif
   - FunctionConstructor
+  - FunctionViewport
+  - ScriptViewport
   layers:
   - Default
   - TransparentFX

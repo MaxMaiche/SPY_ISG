@@ -163,13 +163,14 @@ public static class Utility
 		// On commence par cr�er une copie du container ou se trouve la sequence
 		GameObject containerCopy = CopyActionsFromAndInitFirstChild(srcScript, false, agentTag);
 		// On copie les actions dedans 
+		Debug.Log("Copy actions from " + srcScript.name + " to " + targetContainer.name);
 		for (int i = 0; i < containerCopy.transform.childCount; i++)
 		{
 			// On ne conserve que les BaseElement et on les nettoie
 			if (containerCopy.transform.GetChild(i).GetComponent<BaseElement>())
 			{
 				Transform child = UnityEngine.GameObject.Instantiate(containerCopy.transform.GetChild(i));
-
+				Debug.Log("Copy " + child.name + " to " + targetContainer.name);
 				// remove drop zones
 				foreach (DropZone dropZone in child.GetComponentsInChildren<DropZone>(true))
                 {
@@ -189,6 +190,7 @@ public static class Utility
 					}
 				}
 				child.SetParent(targetContainer.transform, false);
+				Debug.Log("Add " + child.name + " to " + targetContainer.name);
 			}
 		}
 		// Va linker les blocs ensemble

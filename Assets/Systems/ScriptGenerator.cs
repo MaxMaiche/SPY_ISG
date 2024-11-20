@@ -366,31 +366,31 @@ public class ScriptGenerator : FSystem {
 			case "action":
 				obj = Utility.createEditableBlockFromLibrary(getLibraryItemByName(actionNode.Attributes.GetNamedItem("type").Value), mainCanvas);
 				break;
-			// case "function":
-			// 	if (isFunction)
-			// 	{
-			// 		// ERREUR : On ne peut pas appeler une fonction dans une fonction
-			// 		Debug.LogError("Error: A function cannot be called in a function.");
-			// 		return null;
-			// 	}
-			// 	obj = Utility.createEditableBlockFromLibrary(getLibraryItemByName("Function"), mainCanvas);
-            //     string name = actionNode.Attributes.GetNamedItem("name").Value;
+			case "function":
+				if (isFunction)
+				{
+					// ERREUR : On ne peut pas appeler une fonction dans une fonction
+					Debug.LogError("Error: A function cannot be called in a function.");
+					return null;
+				}
+				obj = Utility.createEditableBlockFromLibrary(getLibraryItemByName("Function"), mainCanvas);
+                // string name = actionNode.Attributes.GetNamedItem("name").Value;
 
-			// 	// Recuperation du script de la fonction
-			// 	List<GameObject> funcScript = new List<GameObject>();
-			// 	foreach (XmlNode actionNodeChild in actionNode.ChildNodes)
-			// 		funcScript.Add(readXMLInstruction(actionNodeChild, true));
+				// // Recuperation du script de la fonction
+				// List<GameObject> funcScript = new List<GameObject>();
+				// foreach (XmlNode actionNodeChild in actionNode.ChildNodes)
+				// 	funcScript.Add(readXMLInstruction(actionNodeChild, true));
 
-			// 	// On ajoute les elements enfants dans les bons containers
-			// 	GameObject tmpContainer = GameObject.Instantiate(obj);
-			// 	foreach (GameObject go in funcScript)
-			// 		go.transform.SetParent(tmpContainer.transform, false); //add actions to container
-			// 	Utility.fillExecutablePanel(tmpContainer, obj, name);
-			// 	// bind all child
-			// 	foreach (Transform child in obj.transform)
-			// 		GameObjectManager.bind(child.gameObject);
-			// 	GameObject.Destroy(tmpContainer);
-			// 	break;
+				// // On ajoute les elements enfants dans les bons containers
+				// GameObject tmpContainer = GameObject.Instantiate(obj);
+				// foreach (GameObject go in funcScript)
+				// 	go.transform.SetParent(tmpContainer.transform, false); //add actions to container
+				// Utility.fillExecutablePanel(tmpContainer, obj, name);
+				// // bind all child
+				// foreach (Transform child in obj.transform)
+				// 	GameObjectManager.bind(child.gameObject);
+				// GameObject.Destroy(tmpContainer);
+				break;
 		}
 
 		if (!gameData.dragDropEnabled)
