@@ -323,7 +323,23 @@ public class UISystem : FSystem {
 				child.SetParent(null); // beacause destroying is not immediate, we remove this child from its parent, then Unity can take the time he wants to destroy GameObject
 				GameObject.Destroy(child.gameObject);
 			}
-			// TODO Free Bibliofunction + ContainerFunction
+			// Free Bibliofunction + ContainerFunction
+			GameObject biblioFunction = robot.GetComponent<ScriptRef>().biblioFunction;
+			for (int i = biblioFunction.transform.childCount - 1; i >= 0; i--)
+			{
+				Transform child = biblioFunction.transform.GetChild(i);
+				GameObjectManager.unbind(child.gameObject);
+				child.SetParent(null); // beacause destroying is not immediate, we remove this child from its parent, then Unity can take the time he wants to destroy GameObject
+				GameObject.Destroy(child.gameObject);
+			}
+			GameObject executableFunction = robot.GetComponent<ScriptRef>().executableFunction;
+			for (int i = executableFunction.transform.childCount - 1; i >= 0; i--)
+			{
+				Transform child = executableFunction.transform.GetChild(i);
+				GameObjectManager.unbind(child.gameObject);
+				child.SetParent(null); // beacause destroying is not immediate, we remove this child from its parent, then Unity can take the time he wants to destroy GameObject
+				GameObject.Destroy(child.gameObject);
+			}
 		}
 	}
 
@@ -358,10 +374,7 @@ public class UISystem : FSystem {
 			}
 
 			// On récupére le container de fonctions
-			GameObject biblioFunction = new("BiblioFunction");
-			// instanciate biblioFunction
-			robot.GetComponent<ScriptRef>().biblioFunction = biblioFunction;
-			biblioFunction.transform.SetParent(robot.GetComponent<ScriptRef>().executableFunctionPanel.transform);
+			GameObject biblioFunction = robot.GetComponent<ScriptRef>().biblioFunction;
 
 			// On ajoute toutes les fonctions du right panel dans le container de fonctions
 			foreach (GameObject container in f_viewportContainerFunction)
@@ -373,7 +386,8 @@ public class UISystem : FSystem {
 				newContainer.transform.SetParent(biblioFunction.transform);
 
 				// On ajoute les fonctions dans le container de fonctions
-				Utility.fillExecutablePanel(container, newContainer,"");
+				editableContainer = container.transform.Find("ScriptContainer").gameObject;
+				Utility.fillExecutablePanel(editableContainer, newContainer,"");
 				foreach (Transform child in newContainer.transform)
 					GameObjectManager.bind(child.gameObject);
 			}

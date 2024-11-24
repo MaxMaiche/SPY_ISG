@@ -187,13 +187,19 @@ public class CurrentActionManager : FSystem
 				string functionName = action.GetComponent<Function>().functionName;
 				// - recuperer la fonction correspondante
 				GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
-				// - set la fonction courante
-				agent.GetComponent<ScriptRef>().executableFunction = function;
+				// Faire une copie de la fonction
+				GameObject functionCopy = GameObject.Instantiate(function);
+				// Rajoute chaque child de la fonction dans le executableFunction
+				foreach (Transform child in functionCopy.transform)
+				{
+					child.SetParent(agent.GetComponent<ScriptRef>().executableFunction.transform);
+				}
+
 				// - set fonction courante dans le panel
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
 				// - Recuperer le premier enfant de la fonction
 				return rec_getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
-				// Peut etre gérer la fin de la fonction
+				// Peut etre gérer la fin de la fonction TODO
 			}
 		}
 		return null;
