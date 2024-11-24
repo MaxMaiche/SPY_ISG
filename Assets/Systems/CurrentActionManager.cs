@@ -183,17 +183,23 @@ public class CurrentActionManager : FSystem
 			}else if (action.GetComponent<Function>()){
 				// - Afficher le executeFunctionPanel
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(true);
+				agent.GetComponent<ScriptRef>().inFunction = true;
+				agent.GetComponent<ScriptRef>().currentFunctionBlock = action;
 				// - Recuperer le nom de la fonction
 				string functionName = action.GetComponent<Function>().functionName;
 				// - recuperer la fonction correspondante
 				GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
 				// Faire une copie de la fonction
-				GameObject functionCopy = GameObject.Instantiate(function);
+				// GameObject functionCopy = GameObject.Instantiate(function);
 				// Rajoute chaque child de la fonction dans le executableFunction
-				foreach (Transform child in functionCopy.transform)
+				foreach (Transform child in function.transform)
 				{
-					child.SetParent(agent.GetComponent<ScriptRef>().executableFunction.transform);
+					Debug.Log("child : " + child.gameObject.name);
+					GameObject copyAction = GameObject.Instantiate(child.gameObject, agent.GetComponent<ScriptRef>().executableFunction.transform);
+					// Bind child to FyFy
+					GameObjectManager.bind(copyAction);
 				}
+				Utility.computeNext(agent.GetComponent<ScriptRef>().executableFunction);
 
 				// - set fonction courante dans le panel
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
@@ -388,8 +394,16 @@ public class CurrentActionManager : FSystem
 		BasicAction current_ba = currentAction.GetComponent<BasicAction>();
 		if (current_ba != null)
 		{
+			// We are at the end of a function
+			if (current_ba.next == null && agent.GetComponent<ScriptRef>().inFunction)
+			{
+				// Desactiver le panel de la fonction
+				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
+				agent.GetComponent<ScriptRef>().inFunction = false;
+				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
+			}
 			// if next is not defined or is a BasicAction we return it
-			if(current_ba.next == null || current_ba.next.GetComponent<BasicAction>())
+			else if(current_ba.next == null || current_ba.next.GetComponent<BasicAction>())
 				return current_ba.next;
 			else
 				return getFirstActionOf(current_ba.next, agent);
@@ -492,6 +506,9 @@ public class CurrentActionManager : FSystem
 				return foreverAction.firstChild;
 			else
 				return getFirstActionOf(foreverAction.firstChild, agent);
+		}else if (currentAction.GetComponent<Function>()){
+			// - Recuperer le premier enfant de la fonction
+			return getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
 		}
 
 		return null;

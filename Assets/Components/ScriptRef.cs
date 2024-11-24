@@ -7,6 +7,8 @@ public class ScriptRef : MonoBehaviour {
 	public GameObject executablePanel; //container to show/hide - root of Container prefab
 	public GameObject executableFunctionPanel; //container to show/hide - root of Container prefab
 	public GameObject biblioFunction; // Contain all functions
+	public bool inFunction;
+	public GameObject currentFunctionBlock;
 	public bool scriptFinished;
 	public int nbOfInactions;
 }

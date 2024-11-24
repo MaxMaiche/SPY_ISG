@@ -173,7 +173,7 @@ public class UISystem : FSystem {
 
 			// We look for the script container
 			RectTransform scriptContainer = goRect.parent as RectTransform;
-			while (scriptContainer.tag != "ScriptConstructor")
+			while (scriptContainer.tag != "ScriptConstructor" || scriptContainer.tag != "FunctionConstructor")
 				scriptContainer = scriptContainer.parent as RectTransform;
 			RectTransform viewport = scriptContainer.parent as RectTransform;
 
@@ -222,6 +222,7 @@ public class UISystem : FSystem {
 				// toggle player execution panel
 				GameObjectManager.setGameObjectState(agent.GetComponent<ScriptRef>().executablePanel, value);
 				if (!value)
+					GameObjectManager.setGameObjectState(agent.GetComponent<ScriptRef>().executableFunctionPanel, value);
 					freePlayerExecutablePanels();
 			}
 		// Define Menu button states
@@ -383,6 +384,7 @@ public class UISystem : FSystem {
 				string functionName = container.GetComponentInChildren<UIRootContainer>().scriptName;
 				// Instaciate new container for each function
 				GameObject newContainer = new(functionName);
+				GameObjectManager.bind(newContainer);
 				newContainer.transform.SetParent(biblioFunction.transform);
 
 				// On ajoute les fonctions dans le container de fonctions

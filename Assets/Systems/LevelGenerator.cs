@@ -312,7 +312,8 @@ public class LevelGenerator : FSystem {
 		executableFunctionPanel.GetComponentInChildren<LinkedWith>(true).target = entity; // Maybe ?
 		// Associer � l'agent la librairie de fonctions
 		scriptref.biblioFunction = executableFunctionPanel.transform.Find("BiblioFunction").gameObject;
-
+		scriptref.inFunction = false;
+		
 		// On va charger l'image et le nom de l'agent selon l'agent (robot, ennemi etc...)
 		if (type == "robot" || type == "player")
 		{
