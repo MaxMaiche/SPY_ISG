@@ -116,6 +116,8 @@ public class StepSystem : FSystem {
 			act = go.GetComponent<CurrentAction>();
 			if(act.agent != null && act.agent.CompareTag("Player") && act.GetComponent<BaseElement>().next != null)
 				return true;
+            if (act.agent != null && act.agent.CompareTag("Player") && act.GetComponent<BaseElement>().next == null && act.agent.GetComponent<ScriptRef>().inFunction)
+                return true;
 		}
         return false;
     }

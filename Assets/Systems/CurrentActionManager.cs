@@ -116,13 +116,23 @@ public class CurrentActionManager : FSystem
 	private GameObject rec_getFirstActionOf(GameObject action, GameObject agent)
 	{
 		infiniteLoopDetected = exploredScripItem.Contains(action.GetInstanceID());
-		if (action == null || infiniteLoopDetected)
+		if (action == null) {
+			if (agent.GetComponent<ScriptRef>().inFunction)
+			{
+				// Desactiver le panel de la fonction
+				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
+				agent.GetComponent<ScriptRef>().inFunction = false;
+				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
+			}
+			return null;
+		}
+		if (infiniteLoopDetected)
 			return null;
 		exploredScripItem.Add(action.GetInstanceID());
 		if (action.GetComponent<BasicAction>())
 			return action;
 		else
-		{
+		{	
 			// check if action is a IfControl
 			if (action.GetComponent<IfControl>())
 			{
@@ -205,7 +215,6 @@ public class CurrentActionManager : FSystem
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
 				// - Recuperer le premier enfant de la fonction
 				return rec_getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
-				// Peut etre gérer la fin de la fonction TODO
 			}
 		}
 		return null;
@@ -393,14 +402,13 @@ public class CurrentActionManager : FSystem
 	private GameObject getNextAction(GameObject currentAction, GameObject agent){
 		BasicAction current_ba = currentAction.GetComponent<BasicAction>();
 		if (current_ba != null)
-		{
+		{	
 			// We are at the end of a function
 			if (current_ba.next == null && agent.GetComponent<ScriptRef>().inFunction)
 			{
 				// Desactiver le panel de la fonction
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
 				agent.GetComponent<ScriptRef>().inFunction = false;
-				Debug.Log("End of function OUIIIIIII");
 				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			// if next is not defined or is a BasicAction we return it
