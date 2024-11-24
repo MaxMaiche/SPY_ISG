@@ -400,6 +400,7 @@ public class CurrentActionManager : FSystem
 				// Desactiver le panel de la fonction
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
 				agent.GetComponent<ScriptRef>().inFunction = false;
+				Debug.Log("End of function OUIIIIIII");
 				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			// if next is not defined or is a BasicAction we return it

@@ -221,9 +221,13 @@ public class UISystem : FSystem {
 			{
 				// toggle player execution panel
 				GameObjectManager.setGameObjectState(agent.GetComponent<ScriptRef>().executablePanel, value);
+
 				if (!value)
+				{
 					GameObjectManager.setGameObjectState(agent.GetComponent<ScriptRef>().executableFunctionPanel, value);
 					freePlayerExecutablePanels();
+				}
+					
 			}
 		// Define Menu button states
 		GameObjectManager.setGameObjectState(buttonExecute, !value);
