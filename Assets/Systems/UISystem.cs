@@ -170,11 +170,12 @@ public class UISystem : FSystem {
 		if (go.activeInHierarchy)
 		{
 			RectTransform goRect = go.transform as RectTransform;
-
 			// We look for the script container
 			RectTransform scriptContainer = goRect.parent as RectTransform;
-			while (scriptContainer.tag != "ScriptConstructor" || scriptContainer.tag != "FunctionConstructor")
+
+			while (scriptContainer.tag != "ScriptConstructor" && scriptContainer.tag != "FunctionConstructor")
 				scriptContainer = scriptContainer.parent as RectTransform;
+			
 			RectTransform viewport = scriptContainer.parent as RectTransform;
 
 			float goRectY = Mathf.Abs(scriptContainer.InverseTransformPoint(goRect.transform.position).y);
@@ -274,6 +275,7 @@ public class UISystem : FSystem {
 		gameData.totalExecute = 0;
 		gameData.totalCoin = 0;
 		gameData.levelToLoadScore = null;
+		
 }
 
 

@@ -670,7 +670,6 @@ public static class Utility
 			}else if (script is Function){ // cas d'une fonction
 				{	
 					string functionName = (script as Function).functionName;
-					Debug.Log("Function "+functionName);
 					export += indent(indentLevel) + "<function name=\"" + functionName + "\"/>\n";
 				}
 			}

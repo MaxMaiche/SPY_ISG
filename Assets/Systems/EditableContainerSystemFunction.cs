@@ -70,7 +70,7 @@ public class EditableContainerSystemFunction : FSystem
 			MainLoop.instance.StartCoroutine(tcheckLinkName());
 			f_gameLoaded.addEntryCallback(delegate
 			{
-				if (!gameData.dragDropEnabled)
+				if (!gameData.dragDropEnabledFunction)
 				{
 					foreach (GameObject container in f_scriptContainer)
 					{
@@ -105,12 +105,12 @@ public class EditableContainerSystemFunction : FSystem
 						Transform containerName = header.Find("ContainerName");
 						containerName.GetComponent<TMP_InputField>().interactable = true;
 						containerName.GetComponent<TooltipContent>().text = "Indiquez ici le nom du robot<br>� qui envoyer le programme.";
-						if (gameData.dragDropEnabled)
+						if (gameData.dragDropEnabledFunction)
 							header.Find("RemoveButton").GetComponent<Button>().interactable = true;
 					}
 				}
 
-				if (gameData.actionsHistory == null && gameData.dragDropEnabled)
+				if (gameData.actionsHistory == null && gameData.dragDropEnabledFunction)
 					addContainerButton.interactable = true;
 			});
 		}
@@ -224,7 +224,7 @@ public class EditableContainerSystemFunction : FSystem
 					containerName.GetComponent<TMP_InputField>().interactable = false;
 				}
 				// si le drag&drop n'est pas activ� on bloque la balayette et la suppression du script
-				if (!gameData.dragDropEnabled)
+				if (!gameData.dragDropEnabledFunction)
 				{
 					Transform header = cloneContainer.transform.Find("ScriptContainer").Find("Header");
 					header.Find("RemoveButton").GetComponent<Button>().interactable = false;
@@ -261,7 +261,7 @@ public class EditableContainerSystemFunction : FSystem
 			GameObjectManager.bind(cloneContainer);
 
 			// if drag&drop diabled => hide all replacement slots that are not BaseCondition
-			if (!gameData.dragDropEnabled)
+			if (!gameData.dragDropEnabledFunction)
 				foreach (ReplacementSlot slot in cloneContainer.GetComponentsInChildren<ReplacementSlot>(true))
 					if (slot.slotType != ReplacementSlot.SlotType.BaseCondition)
 						GameObjectManager.setGameObjectState(slot.gameObject, false);

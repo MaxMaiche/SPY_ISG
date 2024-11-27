@@ -116,13 +116,16 @@ public class CurrentActionManager : FSystem
 	private GameObject rec_getFirstActionOf(GameObject action, GameObject agent)
 	{
 		infiniteLoopDetected = exploredScripItem.Contains(action.GetInstanceID());
-		if (action == null) {
-			if (agent.GetComponent<ScriptRef>().inFunction)
+		if (action == null) { // fin d'un script container
+			if (agent.GetComponent<ScriptRef>().inFunction) // on est dans une fonction
 			{
+
 				// Desactiver le panel de la fonction
-				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
-				agent.GetComponent<ScriptRef>().inFunction = false;
-				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
+				// agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
+				// agent.GetComponent<ScriptRef>().inFunction = false;
+
+
+				return rec_getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			return null;
 		}
@@ -195,8 +198,17 @@ public class CurrentActionManager : FSystem
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(true);
 				agent.GetComponent<ScriptRef>().inFunction = true;
 				agent.GetComponent<ScriptRef>().currentFunctionBlock = action;
+
+				// Container a nettoyer
+				foreach (Transform child in agent.GetComponent<ScriptRef>().executableFunction.transform)
+				{
+					GameObjectManager.unbind(child.gameObject);
+					GameObject.Destroy(child.gameObject);
+				}
+
 				// - Recuperer le nom de la fonction
 				string functionName = action.GetComponent<Function>().functionName;
+
 				// - recuperer la fonction correspondante
 				GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
 				// Faire une copie de la fonction
@@ -409,6 +421,7 @@ public class CurrentActionManager : FSystem
 				// Desactiver le panel de la fonction
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
 				agent.GetComponent<ScriptRef>().inFunction = false;
+
 				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			// if next is not defined or is a BasicAction we return it
