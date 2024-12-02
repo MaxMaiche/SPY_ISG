@@ -318,7 +318,7 @@ public class LevelGenerator : FSystem {
 		GameObject go = GameObject.Find("GameData");
 		if (go != null){
 			GameData gd = go.GetComponent<GameData>();
-			gd.dragDropEnabledFunction = false;
+			gd.dragDropEnabledFunction = true;
 		}
 
 		// Modifer le Selectable de la fonction
