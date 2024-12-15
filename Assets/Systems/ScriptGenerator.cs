@@ -374,22 +374,10 @@ public class ScriptGenerator : FSystem {
 					return null;
 				}
 				obj = Utility.createEditableBlockFromLibrary(getLibraryItemByName("Function"), mainCanvas);
-                // string name = actionNode.Attributes.GetNamedItem("name").Value;
+				BaseElement fun = obj.GetComponent<Function>();
 
-				// // Recuperation du script de la fonction
-				// List<GameObject> funcScript = new List<GameObject>();
-				// foreach (XmlNode actionNodeChild in actionNode.ChildNodes)
-				// 	funcScript.Add(readXMLInstruction(actionNodeChild, true));
-
-				// // On ajoute les elements enfants dans les bons containers
-				// GameObject tmpContainer = GameObject.Instantiate(obj);
-				// foreach (GameObject go in funcScript)
-				// 	go.transform.SetParent(tmpContainer.transform, false); //add actions to container
-				// Utility.fillExecutablePanel(tmpContainer, obj, name);
-				// // bind all child
-				// foreach (Transform child in obj.transform)
-				// 	GameObjectManager.bind(child.gameObject);
-				// GameObject.Destroy(tmpContainer);
+				((Function)fun).functionName = actionNode.Attributes.GetNamedItem("name").Value;
+				obj.transform.GetComponentInChildren<TMP_InputField>().text = ((Function)fun).functionName;
 				break;
 		}
 
