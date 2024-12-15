@@ -173,7 +173,7 @@ public class UISystem : FSystem {
 
 			// We look for the script container
 			RectTransform scriptContainer = goRect.parent as RectTransform;
-			while (scriptContainer.tag != "ScriptConstructor" || scriptContainer.tag != "FunctionConstructor")
+			while (scriptContainer.tag != "ScriptConstructor" && scriptContainer.tag != "FunctionConstructor")
 				scriptContainer = scriptContainer.parent as RectTransform;
 			RectTransform viewport = scriptContainer.parent as RectTransform;
 

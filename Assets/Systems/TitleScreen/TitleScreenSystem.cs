@@ -561,7 +561,11 @@ public class TitleScreenSystem : FSystem {
 			{
 				DataLevel dl = new DataLevel();
 				// get src
-				dl.src = new Uri(Application.streamingAssetsPath + "/" + (child.Attributes.GetNamedItem("src").Value)).AbsoluteUri;
+				dl.src = new Uri(Application.streamingAssetsPath + "/" + child.Attributes.GetNamedItem("src").Value).AbsoluteUri;
+
+				// test if path is existing
+                if (!File.Exists(new Uri(dl.src).LocalPath))
+                    dl.src = new Uri(Application.persistentDataPath + "/" + child.Attributes.GetNamedItem("src").Value).AbsoluteUri;
 
 				// get name
 				if (child.Attributes.GetNamedItem("name") != null)
