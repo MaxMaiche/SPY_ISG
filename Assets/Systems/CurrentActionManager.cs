@@ -30,6 +30,7 @@ public class CurrentActionManager : FSystem
 	private bool infiniteLoopDetected;
 
 	public static CurrentActionManager instance;
+	public GameObject functionContainerPrefab;
 
 	public CurrentActionManager()
 	{
@@ -122,6 +123,12 @@ public class CurrentActionManager : FSystem
 				// Desactiver le panel de la fonction
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
 				agent.GetComponent<ScriptRef>().inFunction = false;
+				// - Nettoyer le container de la fonction
+				// foreach (Transform child in agent.GetComponent<ScriptRef>().executableFunction.transform)
+				// {
+				// 	GameObjectManager.unbind(child.gameObject);
+				// 	GameObject.Destroy(child.gameObject);
+				// }
 				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			return null;
@@ -195,6 +202,16 @@ public class CurrentActionManager : FSystem
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(true);
 				agent.GetComponent<ScriptRef>().inFunction = true;
 				agent.GetComponent<ScriptRef>().currentFunctionBlock = action;
+				// - Désactiver le container de la fonction
+				agent.GetComponent<ScriptRef>().executableFunction.SetActive(false);
+				// - Creer un container pour la fonction
+				agent.GetComponent<ScriptRef>().executableFunction = GameObject.Instantiate(functionContainerPrefab);
+				agent.GetComponent<ScriptRef>().executableFunction.transform.SetParent(agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Scroll View").Find("Viewport"), false);
+				// - Mettre le nouveau container dans le child 0
+				agent.GetComponent<ScriptRef>().executableFunction.transform.SetSiblingIndex(0);
+				// - Reset rectTransform
+				agent.GetComponent<ScriptRef>().executableFunction.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+				agent.GetComponent<ScriptRef>().executableFunction.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 				// - Recuperer le nom de la fonction
 				string functionName = action.GetComponent<Function>().functionName;
 				// - recuperer la fonction correspondante
@@ -204,7 +221,7 @@ public class CurrentActionManager : FSystem
 				// Rajoute chaque child de la fonction dans le executableFunction
 				foreach (Transform child in function.transform)
 				{
-					Debug.Log("child : " + child.gameObject.name);
+					// Debug.Log("child : " + child.gameObject.name);
 					GameObject copyAction = GameObject.Instantiate(child.gameObject, agent.GetComponent<ScriptRef>().executableFunction.transform);
 					// Bind child to FyFy
 					GameObjectManager.bind(copyAction);
@@ -213,6 +230,7 @@ public class CurrentActionManager : FSystem
 
 				// - set fonction courante dans le panel
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
+				
 				// - Recuperer le premier enfant de la fonction
 				return rec_getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
 			}
@@ -394,12 +412,15 @@ public class CurrentActionManager : FSystem
 			}
 			else if (infiniteLoopDetected)
 				GameObjectManager.addComponent<NewEnd>(MainLoop.instance.gameObject, new { endType = NewEnd.InfiniteLoop });
-			GameObjectManager.removeComponent<CurrentAction>(currentActionGO);
+
+			if (currentActionGO)
+				GameObjectManager.removeComponent<CurrentAction>(currentActionGO);
 		}
 	}
 
 	// return the next action to execute, return null if no next action available
 	private GameObject getNextAction(GameObject currentAction, GameObject agent){
+		Debug.Log("getNextAction on " + currentAction);
 		BasicAction current_ba = currentAction.GetComponent<BasicAction>();
 		if (current_ba != null)
 		{	
@@ -409,6 +430,12 @@ public class CurrentActionManager : FSystem
 				// Desactiver le panel de la fonction
 				agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(false);
 				agent.GetComponent<ScriptRef>().inFunction = false;
+				// - Nettoyer le container de la fonction
+				// foreach (Transform child in agent.GetComponent<ScriptRef>().executableFunction.transform)
+				// {
+				// 	GameObjectManager.unbind(child.gameObject);
+				// 	GameObject.Destroy(child.gameObject);
+				// }
 				return getFirstActionOf(agent.GetComponent<ScriptRef>().currentFunctionBlock.GetComponent<Function>().next, agent);
 			}
 			// if next is not defined or is a BasicAction we return it
@@ -516,6 +543,37 @@ public class CurrentActionManager : FSystem
 			else
 				return getFirstActionOf(foreverAction.firstChild, agent);
 		}else if (currentAction.GetComponent<Function>()){
+			// - Afficher le executeFunctionPanel
+			agent.GetComponent<ScriptRef>().executableFunctionPanel.SetActive(true);
+			agent.GetComponent<ScriptRef>().inFunction = true;
+			agent.GetComponent<ScriptRef>().currentFunctionBlock = currentAction;
+			// - Désactiver le container de la fonction
+			agent.GetComponent<ScriptRef>().executableFunction.SetActive(false);
+			// - Creer un container pour la fonction
+			agent.GetComponent<ScriptRef>().executableFunction = GameObject.Instantiate(functionContainerPrefab);
+			// - Ajouter le container dans le panel
+			agent.GetComponent<ScriptRef>().executableFunction.transform.SetParent(agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Scroll View").Find("Viewport"), false);
+			// - Mettre le nouveau container dans le child 0
+			agent.GetComponent<ScriptRef>().executableFunction.transform.SetSiblingIndex(0);
+			// - Recuperer le nom de la fonction
+			string functionName = currentAction.GetComponent<Function>().functionName;
+			// - recuperer la fonction correspondante
+			GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
+			// Faire une copie de la fonction
+			// GameObject functionCopy = GameObject.Instantiate(function);
+			// Rajoute chaque child de la fonction dans le executableFunction
+			foreach (Transform child in function.transform)
+			{
+				// Debug.Log("child : " + child.gameObject.name);
+				GameObject copyAction = GameObject.Instantiate(child.gameObject, agent.GetComponent<ScriptRef>().executableFunction.transform);
+				// Bind child to FyFy
+				GameObjectManager.bind(copyAction);
+			}
+			Utility.computeNext(agent.GetComponent<ScriptRef>().executableFunction);
+
+			// - set fonction courante dans le panel
+			agent.GetComponent<ScriptRef>().executableFunctionPanel.transform.Find("Header").Find("functionName").GetComponent<TMP_InputField>().text = functionName;
+			
 			// - Recuperer le premier enfant de la fonction
 			return getFirstActionOf(agent.GetComponent<ScriptRef>().executableFunction.transform.GetChild(0).gameObject, agent);
 		}
@@ -525,7 +583,20 @@ public class CurrentActionManager : FSystem
 
 	private IEnumerator delayAddCurrentAction(GameObject nextAction, GameObject agent)
 	{
+		Debug.Log("1 Add CurrentAction on " + nextAction);
 		yield return null; // we add new CurrentAction next frame otherwise families are not notified to this adding because at the begining of this frame GameObject already contains CurrentAction
+		Debug.Log("2 Add CurrentAction on " + nextAction);
 		GameObjectManager.addComponent<CurrentAction>(nextAction, new { agent = agent });
 	}
+
+	private IEnumerator delayCleanContainerFunction(GameObject agent){
+		yield return null; 
+		// Container a nettoyer
+		foreach (Transform child in agent.GetComponent<ScriptRef>().executableFunction.transform)
+		{
+			GameObjectManager.unbind(child.gameObject);
+			GameObject.Destroy(child.gameObject);
+		}
+	}	
+
 }
