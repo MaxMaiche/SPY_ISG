@@ -97,7 +97,6 @@ public class LevelGenerator : FSystem {
 
 		// check if dragdropDisabled node exists and set gamedata accordingly
 		gameData.dragDropEnabled = doc.GetElementsByTagName("dragdropDisabled").Count == 0;
-		gameData.dragDropEnabledFunction = gameData.dragDropEnabled;
 
 		foreach (XmlNode child in root.ChildNodes)
 		{
@@ -314,18 +313,7 @@ public class LevelGenerator : FSystem {
 		// Associer � l'agent la librairie de fonctions
 		scriptref.biblioFunction = executableFunctionPanel.transform.Find("BiblioFunction").gameObject;
 		scriptref.inFunction = false;
-		// Bloquer la modification de la fonction
-		GameObject go = GameObject.Find("GameData");
-		if (go != null){
-			GameData gd = go.GetComponent<GameData>();
-			gd.dragDropEnabledFunction = false;
-		}
-
-		// Modifer le Selectable de la fonction
-		executableFunctionPanel.GetComponentInChildren<Selectable>().interactable = false;
-
-
-
+		
 		// On va charger l'image et le nom de l'agent selon l'agent (robot, ennemi etc...)
 		if (type == "robot" || type == "player")
 		{

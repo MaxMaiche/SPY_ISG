@@ -121,10 +121,7 @@ public class HighLightSystem : FSystem {
 	public void unHighLightItem(GameObject go){
 		// manage the case of items in executable panels
 		ScrollRect parentScroll = go.GetComponentInParent<ScrollRect>();
-		if ((go.GetComponent<BaseElement>() || go.GetComponent<BaseCondition>()) 
-			&& parentScroll 
-			&& (parentScroll.transform.parent.name.Contains("ExecutablePanel")|| parentScroll.transform.parent.name.Contains("ExecutableFunctionPanel"))) {
-			
+		if ((go.GetComponent<BaseElement>() || go.GetComponent<BaseCondition>()) && parentScroll && parentScroll.transform.parent.name.Contains("ExecutablePanel")) {
 			Selectable sel = go.GetComponent<Selectable>();
 			ColorBlock cb = sel.colors;
 			if (sel.interactable)
