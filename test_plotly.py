@@ -168,12 +168,14 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
     fig.update_layout(
         title='SPY Dashboard',
         #title='Scores and Execution Times Per Level',
-        title_y=0.95,
+        title_y=0.99,
         title_x=0.5,
+        # Title font size
+        title_font_size=24,
         barmode='group',
-        template='plotly_white',
-        height=1000,  # Adjust height for better visualization
-        width=1920,  # Set width for full-screen visualization
+        template='plotly_dark',
+        # height=1000,  # Adjust height for better visualization
+        # width=1920,  # Set width for full-screen visualization
         margin=dict(t=80, b=50, l=20, r=20),  # Margins
     )
 
