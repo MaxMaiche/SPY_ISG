@@ -165,6 +165,9 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
     fig.update_xaxes(title_text="Level Name", row=2, col=1)
     fig.update_yaxes(title_text="Scores", row=2, col=1)
 
+    fig.update_xaxes(title_text="Level Name", row=2, col=2)
+    fig.update_yaxes(title_text="Number of launched levels", row=2, col=2)
+
     # Layout adjustments
     fig.update_layout(
         title='SPY Dashboard',
