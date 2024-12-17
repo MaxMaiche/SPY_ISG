@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import xml.etree.ElementTree as ET
+import os
 
 
 
@@ -128,31 +129,31 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
     )
 
     # Add borders around each graph
-    # fig.add_shape(
-    #     type="rect",
-    #     xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
-    #     x0=0.0, x1=0.4, y0=0, y1=0.3,  # Left graph border
-    #     line=dict(color="black", width=2)  # Border color and width
-    # )
-    # fig.add_shape(
-    #     type="rect",
-    #     xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
-    #     x0=0.6, x1=1.0, y0=0, y1=0.3,  # Right graph border
-    #     line=dict(color="black", width=2)  # Border color and width
-    # )
+    fig.add_shape(
+        type="rect",
+        xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
+        x0=0.0, x1=0.4, y0=0, y1=0.35,  # Left graph border
+        line=dict(color="red", width=2)  # Border color and width
+    )
+    fig.add_shape(
+        type="rect",
+        xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
+        x0=0.6, x1=1.0, y0=0, y1=0.35,  # Right graph border
+        line=dict(color="white", width=2)  # Border color and width
+    )
 
-    # fig.add_shape(
-    #     type="rect",
-    #     xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
-    #     x0=0.0, x1=0.4, y0=0.6, y1=1,  # Left graph border
-    #     line=dict(color="black", width=2)  # Border color and width
-    # )
-    # fig.add_shape(
-    #     type="rect",
-    #     xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
-    #     x0=0.6, x1=1.0, y0=0.6, y1=1,  # Right graph border
-    #     line=dict(color="black", width=2)  # Border color and width
-    # )
+    fig.add_shape(
+        type="rect",
+        xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
+        x0=0.0, x1=0.4, y0=0.6, y1=1,  # Left graph border
+        line=dict(color="green", width=2)  # Border color and width
+    )
+    fig.add_shape(
+        type="rect",
+        xref="paper", yref="paper",  # Use paper coordinates for layout-level shapes
+        x0=0.6, x1=1.0, y0=0.6, y1=1,  # Right graph border
+        line=dict(color="yellow", width=2)  # Border color and width
+    )
 
     # Update axis titles
     fig.update_xaxes(title_text="Level Name", row=1, col=1)
@@ -261,7 +262,7 @@ def main():
         if matching_launched:
             # Extraire le nom du niveau
             level_name = matching_launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
-            level_xml_path = streaming_asset_path + level_name 
+            level_xml_path = streaming_asset_path + level_name
 
             # Incrémentation du nombre de lancement
             if level_name not in cpt_lunched:
