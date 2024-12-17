@@ -144,6 +144,19 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
         bargroupgap=0.1  # Adjust spacing between groups
     )
 
+    fig.add_annotation(
+        x=0.43, y=1.0, text="<span style='color:skyblue'>■</span> Max Score<br><span style='color:orange'>■</span> Min Score",
+        showarrow=False, xref="paper", yref="paper", align="left",
+        font=dict(size=12)
+    )
+
+    # Légende pour la deuxième sous-figure
+    fig.add_annotation(
+        x=1.07, y=1.0, text="<span style='color:lightgreen'>■</span> Avg Exec Time<br><span style='color:orange'>■</span> Max Exec Time<br><span style='color:blue'>■</span> Min Exec Time",
+        showarrow=False, xref="paper", yref="paper", align="left",
+        font=dict(size=12)
+    )
+
     # Show the figure
     fig.show()
 
@@ -157,6 +170,13 @@ def main():
     completed_response = fetch_data("http://adlnet.gov/expapi/verbs/completed")
     if completed_response:
         process_lrs_response(completed_response, completed_data)
+
+    for d in launched_data:
+        d['timestamp'] = d['timestamp'][0:-2]+"Z"
+        d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
+    for d in completed_data:
+        d['timestamp'] = d['timestamp'][0:-2]+"Z"
+        d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
 
     # Sort data by timestamp
     launched_data.sort(key=lambda x: datetime.fromisoformat(x['timestamp'].replace("Z", "+00:00")))
