@@ -52,12 +52,13 @@ def process_lrs_response(response_json, data_store):
             print(f"Error fetching more data: {more_response.status_code} - {more_response.text}")
 
 # Fetch data based on a specific verb
-def fetch_data(verb):
+def fetch_data(verb, session_name):
     query_params = {
     "agent": json.dumps({
         "account": {
             "homePage": "https://www.lip6.fr/mocah/",
-            "name":"3D37C851"
+            "name":session_name
+            #"name":"3D37C851"
         }
     }),
     # check vocabulary lrs
@@ -123,10 +124,15 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
         )
 
     # Bottom right subplot: Number of launched per level
-    fig.add_trace(
-        go.Bar(x=list(cpt_lunched.keys()), y=list(cpt_lunched.values()), name='Number of launched', marker_color='orange', showlegend=False),
-        row=2, col=2
-    )
+    # fig.add_trace(
+    #     go.Bar(x=list(cpt_lunched.keys()), y=list(cpt_lunched.values()), name='Number of launched', marker_color='orange', showlegend=False),
+    #     row=2, col=2
+    # )
+    if isinstance(cpt_lunched, dict):  # Vérification que cpt_lunched est un dictionnaire
+        fig.add_trace(
+            go.Bar(x=list(cpt_lunched.keys()), y=list(cpt_lunched.values()), name='Number of launched', marker_color='orange', showlegend=False),
+            row=2, col=2
+        )
 
     # Add borders around each graph
     fig.add_shape(
@@ -215,90 +221,143 @@ def parse_xml(xml_file):
     return scores
 
 def main():
+    session_names = ["3D37C851", "4C6ED003"]  # Liste des sessions
+    #session_names = ["3D37C851"]
+    #session_names = ["4C6ED003"]
+    session_data = {}  # Dictionnaire pour stocker les données de chaque session
 
-    print("Fetching launched data...")
-    launched_response = fetch_data("http://adlnet.gov/expapi/verbs/launched")
-    if launched_response:
-        process_lrs_response(launched_response, launched_data)
+    # Récupérer les données pour chaque session
+    for session_name in session_names:
+        print(f"Fetching data for session {session_name}...")
+        launched_response = fetch_data("http://adlnet.gov/expapi/verbs/launched", session_name)
+        completed_response = fetch_data("http://adlnet.gov/expapi/verbs/completed", session_name)
 
-    print("Fetching completed data...")
-    completed_response = fetch_data("http://adlnet.gov/expapi/verbs/completed")
-    if completed_response:
-        process_lrs_response(completed_response, completed_data)
+        launched_data = []
+        completed_data = []
 
-    for d in launched_data:
-        d['timestamp'] = d['timestamp'][0:-2]+"Z"
-        d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
-    for d in completed_data:
-        d['timestamp'] = d['timestamp'][0:-2]+"Z"
-        d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
+        if launched_response:
+            process_lrs_response(launched_response, launched_data)
+        if completed_response:
+            process_lrs_response(completed_response, completed_data)
 
-    # Sort data by timestamp
-    launched_data.sort(key=lambda x: datetime.fromisoformat(x['timestamp'].replace("Z", "+00:00")))
-    completed_data.sort(key=lambda x: datetime.fromisoformat(x['timestamp'].replace("Z", "+00:00")))
+        # Formater et trier les timestamps
+        for d in launched_data:
+            d['timestamp'] = d['timestamp'][0:-2] + "Z"
+            d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
+        for d in completed_data:
+            d['timestamp'] = d['timestamp'][0:-2] + "Z"
+            d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
 
-    # Match completed with the closest launched before it
-    level_scores = {}
-    level_execution_times = {}
-    cpt_lunched = {}
-    for completed in completed_data:
-        completed_timestamp = datetime.fromisoformat(completed['timestamp'].replace("Z", "+00:00"))
-        
-        # Extraire le score si disponible
-        extensions = completed['result'].get('extensions', {})
-        score_list = extensions.get('https://spy.lip6.fr/xapi/extensions/score', [])
-        if score_list:
-            completed_score = int(score_list[0])
-        else:
-            completed_score = 0
+        launched_data.sort(key=lambda x: datetime.fromisoformat(x['timestamp'].replace("Z", "+00:00")))
+        completed_data.sort(key=lambda x: datetime.fromisoformat(x['timestamp'].replace("Z", "+00:00")))
 
-        # Trouver le dernier launched avant ce completed
-        matching_launched = None
-        for launched in reversed(launched_data):
-            launched_timestamp = datetime.fromisoformat(launched['timestamp'].replace("Z", "+00:00"))
-            if launched_timestamp <= completed_timestamp:
-                matching_launched = launched
+        # Analyser les données pour cette session
+        level_scores = {}
+        level_execution_times = {}
+        cpt_launched = {}
 
-                break
-        
-        
-        if matching_launched:
-            # Extraire le nom du niveau
-            level_name = matching_launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
-            level_xml_path = streaming_asset_path + level_name
-
-            # Incrémentation du nombre de lancement
-            if level_name not in cpt_lunched:
-                cpt_lunched[level_name] = 0
-            cpt_lunched[level_name] += 1
+        for completed in completed_data:
+            completed_timestamp = datetime.fromisoformat(completed['timestamp'].replace("Z", "+00:00"))
             
-            stars_scores = parse_xml(level_xml_path)[0]
-            max_score = int(stars_scores['threeStars'])
-            # Ajouter le score au niveau correspondant
-            if level_name not in level_scores:
-                level_scores[level_name] = []
-            level_scores[level_name].append(completed_score/max_score)
+            # Extraire le score si disponible
+            extensions = completed['result'].get('extensions', {})
+            score_list = extensions.get('https://spy.lip6.fr/xapi/extensions/score', [])
+            completed_score = int(score_list[0]) if score_list else 0
 
+            # Trouver le dernier launched avant ce completed
+            matching_launched = next(
+                (l for l in reversed(launched_data)
+                 if datetime.fromisoformat(l['timestamp'].replace("Z", "+00:00")) <= completed_timestamp),
+                None
+            )
+            
+            if matching_launched:
+                level_name = matching_launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
+                level_xml_path = streaming_asset_path + level_name
 
-            # Calculer le temps d'exécution
-            execution_time = (completed_timestamp - launched_timestamp).total_seconds()
+                # Incrémentation du nombre de lancement
+                if level_name not in cpt_launched:
+                    cpt_launched[level_name] = 0
+                cpt_launched[level_name] += 1
+                
+                stars_scores = parse_xml(level_xml_path)[0]
+                max_score = int(stars_scores['threeStars'])
 
-            # Ajouter le temps d'exécution au niveau correspondant
-            if level_name not in level_execution_times:
-                level_execution_times[level_name] = []
-            level_execution_times[level_name].append(execution_time)
+                # Ajouter le score au niveau correspondant
+                if level_name not in level_scores:
+                    level_scores[level_name] = []
+                level_scores[level_name].append(completed_score / max_score)
 
-    # Calculer les scores max et min pour chaque niveau
-    levels = list(level_scores.keys())
-    max_scores = [max(scores) if scores else 0 for scores in level_scores.values()]
-    min_scores = [min(scores) if scores else 0 for scores in level_scores.values()]
+                # Calculer le temps d'exécution
+                execution_time = (completed_timestamp - datetime.fromisoformat(matching_launched['timestamp'].replace("Z", "+00:00"))).total_seconds()
+                if level_name not in level_execution_times:
+                    level_execution_times[level_name] = []
+                level_execution_times[level_name].append(execution_time)
 
-    levels = list(level_execution_times.keys())
-    avg_execution_times = [sum(times) / len(times) if times else 0 for times in level_execution_times.values()]
-    max_execution_times = [max(times) if times else 0 for times in level_execution_times.values()]
-    min_execution_times = [min(times) if times else 0 for times in level_execution_times.values()]
+        # Calculer les métriques pour cette session
+        levels = sorted(level_scores.keys())
+        max_scores = [max(scores) if scores else 0 for scores in level_scores.values()]
+        min_scores = [min(scores) if scores else 0 for scores in level_scores.values()]
+        avg_execution_times = [sum(times) / len(times) if times else 0 for times in level_execution_times.values()]
+        max_execution_times = [max(times) if times else 0 for times in level_execution_times.values()]
+        min_execution_times = [min(times) if times else 0 for times in level_execution_times.values()]
 
-    plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_lunched)
+        # Stocker les données dans le dictionnaire
+        session_data[session_name] = {
+            "levels": levels,
+            "max_scores": max_scores,
+            "min_scores": min_scores,
+            "avg_execution_times": avg_execution_times,
+            "max_execution_times": max_execution_times,
+            "min_execution_times": min_execution_times,
+            "level_scores": level_scores,
+            "cpt_launched": cpt_launched,
+        }
+
+    # Calculer les moyennes entre sessions
+    combined_data = {}
+    all_levels = set().union(*[data["levels"] for data in session_data.values()])
+
+    for level in all_levels:
+        combined_data[level] = {
+            "max_score": [],
+            "min_score": [],
+            "avg_execution_time": [],
+            "max_execution_time": [],
+            "min_execution_time": [],
+            "scores": [],
+            "launch_counts": [],
+        }
+        for session_name, data in session_data.items():
+            if level in data["levels"]:
+                idx = data["levels"].index(level)
+                combined_data[level]["max_score"].append(data["max_scores"][idx])
+                combined_data[level]["min_score"].append(data["min_scores"][idx])
+                combined_data[level]["avg_execution_time"].append(data["avg_execution_times"][idx])
+                combined_data[level]["max_execution_time"].append(data["max_execution_times"][idx])
+                combined_data[level]["min_execution_time"].append(data["min_execution_times"][idx])
+                combined_data[level]["scores"].extend(data["level_scores"][level])
+                combined_data[level]["launch_counts"].append(data["cpt_launched"].get(level, 0))
+
+    if(len(session_names) > 1):
+        # Moyennes pour chaque niveau
+        levels = sorted(combined_data.keys())
+        avg_max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in combined_data.values()]
+        avg_min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in combined_data.values()]
+        avg_execution_times = [sum(data["avg_execution_time"]) / len(data["avg_execution_time"]) for data in combined_data.values()]
+        avg_max_execution_times = [sum(data["max_execution_time"]) / len(data["max_execution_time"]) for data in combined_data.values()]
+        avg_min_execution_times = [sum(data["min_execution_time"]) / len(data["min_execution_time"]) for data in combined_data.values()]
+        avg_launch_counts = [sum(data["launch_counts"]) / len(data["launch_counts"]) for data in combined_data.values()]
+        scores_per_level = {level: data["scores"] for level, data in combined_data.items()}
+
+        # Tracer les graphiques avec les moyennes
+        plot_with_subplots(
+            levels, avg_max_scores, avg_min_scores, avg_execution_times,
+            avg_max_execution_times, avg_min_execution_times, scores_per_level, 
+            dict(zip(levels, avg_launch_counts))  # Convertir la liste en dictionnaire pour cpt_launched
+        )
+    else:
+        plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_launched)
 
 
 
