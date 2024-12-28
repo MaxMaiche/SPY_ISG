@@ -221,24 +221,29 @@ def parse_xml(xml_file):
     return scores
 
 def main():
-    session_names = ["3D37C851", "4C6ED003"]  # Liste des sessions
+    #session_names = ["3D37C851", "4C6ED003"]  # Liste des sessions
     #session_names = ["3D37C851"]
-    #session_names = ["4C6ED003"]
+    session_names = ["4C6ED003"]
     session_data = {}  # Dictionnaire pour stocker les données de chaque session
 
     # Récupérer les données pour chaque session
     for session_name in session_names:
         print(f"Fetching data for session {session_name}...")
         launched_response = fetch_data("http://adlnet.gov/expapi/verbs/launched", session_name)
+        executed_response = fetch_data("https://spy.lip6.fr/xapi/verbs/executed", session_name)
         completed_response = fetch_data("http://adlnet.gov/expapi/verbs/completed", session_name)
 
         launched_data = []
         completed_data = []
+        executed_data = []
 
         if launched_response:
             process_lrs_response(launched_response, launched_data)
         if completed_response:
             process_lrs_response(completed_response, completed_data)
+        if executed_response:
+            process_lrs_response(executed_response, executed_data)
+        
 
         # Formater et trier les timestamps
         for d in launched_data:
@@ -255,6 +260,19 @@ def main():
         level_scores = {}
         level_execution_times = {}
         cpt_launched = {}
+        cpt_executed = {}
+        for launched in launched_data:
+            launched_timestamp = datetime.fromisoformat(launched['timestamp'].replace("Z", "+00:00"))
+            matching_executed = next(
+                (l for l in executed_data
+                 if datetime.fromisoformat(l['timestamp'].replace("Z", "+00:00")) >= launched_timestamp),
+                None
+            )
+            if matching_executed:
+                level_name = launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
+                if level_name not in cpt_executed:
+                    cpt_executed[level_name] = 0
+                cpt_executed[level_name] += 1
 
         for completed in completed_data:
             completed_timestamp = datetime.fromisoformat(completed['timestamp'].replace("Z", "+00:00"))
@@ -311,7 +329,7 @@ def main():
             "max_execution_times": max_execution_times,
             "min_execution_times": min_execution_times,
             "level_scores": level_scores,
-            "cpt_launched": cpt_launched,
+            "cpt_launched": cpt_executed,
         }
 
     # Calculer les moyennes entre sessions
@@ -357,8 +375,7 @@ def main():
             dict(zip(levels, avg_launch_counts))  # Convertir la liste en dictionnaire pour cpt_launched
         )
     else:
-        plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_launched)
-
+        plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_executed)
 
 
 if __name__ == "__main__":
