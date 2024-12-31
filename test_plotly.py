@@ -367,23 +367,28 @@ def main():
                 combined_data[level]["scores"].extend(data["level_scores"][level])
                 combined_data[level]["launch_counts"].append(data["cpt_launched"].get(level, 0))
 
-    if(len(session_names) > 1):
-        # Moyennes pour chaque niveau
-        levels = list(combined_data.keys())
-        avg_max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in combined_data.values()]
-        avg_min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in combined_data.values()]
-        avg_execution_times = [sum(data["avg_execution_time"]) / len(data["avg_execution_time"]) for data in combined_data.values()]
-        avg_max_execution_times = [sum(data["max_execution_time"]) / len(data["max_execution_time"]) for data in combined_data.values()]
-        avg_min_execution_times = [sum(data["min_execution_time"]) / len(data["min_execution_time"]) for data in combined_data.values()]
-        avg_launch_counts = [sum(data["launch_counts"]) / len(data["launch_counts"]) for data in combined_data.values()]
-        scores_per_level = {level: data["scores"] for level, data in combined_data.items()}
+    if len(session_names) > 1:
+        # Trier les niveaux par ordre alphabétique
+        sorted_levels = sorted(combined_data.keys())
+
+        # Réorganiser les données dans le même ordre
+        sorted_combined_data = {level: combined_data[level] for level in sorted_levels}
+
+        avg_max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in sorted_combined_data.values()]
+        avg_min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in sorted_combined_data.values()]
+        avg_execution_times = [sum(data["avg_execution_time"]) / len(data["avg_execution_time"]) for data in sorted_combined_data.values()]
+        avg_max_execution_times = [sum(data["max_execution_time"]) / len(data["max_execution_time"]) for data in sorted_combined_data.values()]
+        avg_min_execution_times = [sum(data["min_execution_time"]) / len(data["min_execution_time"]) for data in sorted_combined_data.values()]
+        avg_launch_counts = [sum(data["launch_counts"]) / len(data["launch_counts"]) for data in sorted_combined_data.values()]
+        scores_per_level = {level: data["scores"] for level, data in sorted_combined_data.items()}
 
         # Tracer les graphiques avec les moyennes
         plot_with_subplots(
-            levels, avg_max_scores, avg_min_scores, avg_execution_times,
-            avg_max_execution_times, avg_min_execution_times, scores_per_level, 
-            dict(zip(levels, avg_launch_counts))  # Convertir la liste en dictionnaire pour cpt_launched
+            sorted_levels, avg_max_scores, avg_min_scores, avg_execution_times,
+            avg_max_execution_times, avg_min_execution_times, scores_per_level,
+            dict(zip(sorted_levels, avg_launch_counts))  # Convertir la liste en dictionnaire pour cpt_launched
         )
+
     else:
         plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_executed)
 
