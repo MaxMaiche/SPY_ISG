@@ -93,6 +93,8 @@ def plot_with_subplots(levels, max_scores, min_scores, avg_execution_times, max_
     )
 
     # Left subplot: Scores
+    # print("min_scores ",min_scores)
+    # print("max_scores ",max_scores)
     fig.add_trace(
         go.Bar(x=levels, y=max_scores, name='Max Score', marker_color='skyblue', showlegend=False),
         row=1, col=1
@@ -221,9 +223,9 @@ def parse_xml(xml_file):
     return scores
 
 def main():
-    #session_names = ["3D37C851", "4C6ED003"]  # Liste des sessions
+    session_names = ["3D37C851", "4C6ED003"]  # Liste des sessions
     #session_names = ["3D37C851"]
-    session_names = ["4C6ED003"]
+    #session_names = ["4C6ED003"]
     session_data = {}  # Dictionnaire pour stocker les données de chaque session
 
     # Récupérer les données pour chaque session
@@ -313,9 +315,17 @@ def main():
                 level_execution_times[level_name].append(execution_time)
 
         # Calculer les métriques pour cette session
-        levels = sorted(level_scores.keys())
+        levels = list(level_scores.keys())
+        #print(levels)
         max_scores = [max(scores) if scores else 0 for scores in level_scores.values()]
         min_scores = [min(scores) if scores else 0 for scores in level_scores.values()]
+
+        # for level, max_score in zip(levels, max_scores):
+        #     print(f"Niveau: {level} - Score Max: {max_score}")
+
+        # for level, min_score in zip(levels, min_scores):
+        #     print(f"Niveau: {level} - Score Min: {min_score}")
+
         avg_execution_times = [sum(times) / len(times) if times else 0 for times in level_execution_times.values()]
         max_execution_times = [max(times) if times else 0 for times in level_execution_times.values()]
         min_execution_times = [min(times) if times else 0 for times in level_execution_times.values()]
@@ -359,7 +369,7 @@ def main():
 
     if(len(session_names) > 1):
         # Moyennes pour chaque niveau
-        levels = sorted(combined_data.keys())
+        levels = list(combined_data.keys())
         avg_max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in combined_data.values()]
         avg_min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in combined_data.values()]
         avg_execution_times = [sum(data["avg_execution_time"]) / len(data["avg_execution_time"]) for data in combined_data.values()]
