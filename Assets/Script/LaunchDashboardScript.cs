@@ -18,7 +18,7 @@ class Program: MonoBehaviour
         String arg = inputField.text;
 
         // Chemin vers l'exécutable Python
-        string pythonPath = @"C:\Users\Max\AppData\Local\Microsoft\WindowsApps\python3.11.exe";
+        string pythonPath = @"python.exe";
 
         // Chemin vers le script Python
         string scriptPath = @"dashboard_plotly.py";
