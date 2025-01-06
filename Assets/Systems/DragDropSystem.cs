@@ -776,6 +776,8 @@ public class DragDropSystem : FSystem
 		}
 	}
 
+
+	// Récupération et trace lors d'une modification d'un nom d'une fonction		
 	public void onlyFunctionName(GameObject funBlock, string newValue)
 	{
 		string oldValue = funBlock.GetComponent<Function>().functionName;
