@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+
+	<dialogs>
+		<dialog text="[fr]Bobby et vous avez réussi à avancer dans le Datry sans attirer l'attention.&#xA;&#xA;Et vous avez trouvé une partie des robots en danger ! Génial.[/fr][en]Bobby and you managed to move forward in the Datry without drawing attention.&#xA;&#xA;And you found some of the robots in danger! Great.[/en]"/>
+		<dialog text="[fr]Visiblement, mis à part Bobby, ils sont tous désactivés. Ils ne vous seront d'aucune aide.[/fr][en]Apparently, apart from Bobby, they are all deactivated. They won't be of any help to you.[/en]"/>
+		<dialog text="[fr]Pour continuer à avancer, vous devez de nouveau coopérer avec Bobby.&#xA;&#xA;Mais cette fois-ci, il ne pourra pas continuer avec vous.[/fr][en]To keep moving forward, you'll need to cooperate with Bobby again.&#xA;&#xA;But this time, he won't be able to continue with you.[/en]"/>
+		<dialog text="[fr]Voici deux fonctions et quelques blocs pour vous aider.&#xA;&#xA;Bonne chance ! Et n'oubliez pas : restez discret.[/fr][en]Here are two functions and a few blocks to help you.&#xA;&#xA;Good luck! And don't forget: stay discreet.[/en]"/>
+	</dialogs>
+
+
+	<score twoStars="1500" threeStars="3789"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="-1" />
+		<blockLimit blockType="TurnLeft" limit="0" />
+		<blockLimit blockType="TurnRight" limit="0" />
+		<blockLimit blockType="TurnBack" limit="-1" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="-1" />
+		<blockLimit blockType="IfThen" limit="0" />
+		<blockLimit blockType="IfElse" limit="0" />
+		<blockLimit blockType="ForLoop" limit="1" />
+		<blockLimit blockType="While" limit="-1" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="OrOperator" limit="0" />
+		<blockLimit blockType="NotOperator" limit="-1" />
+		<blockLimit blockType="WallFront" limit="0" />
+		<blockLimit blockType="WallLeft" limit="0" />
+		<blockLimit blockType="WallRight" limit="0" />
+		<blockLimit blockType="PathFront" limit="0" />
+		<blockLimit blockType="PathLeft" limit="0" />
+		<blockLimit blockType="PathRight" limit="0" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="-1" />
+		<blockLimit blockType="Function" limit="2" />
+	</blockLimits>
+
+	<door posX="7" posY="15" slotId="0" direction="0" />
+
+	<door posX="7" posY="5" slotId="0" direction="1" />
+
+	<door posX="9" posY="9" slotId="2" direction="3" />
+
+	<door posX="9" posY="8" slotId="2" direction="3" />
+
+	<door posX="9" posY="7" slotId="2" direction="3" />
+
+	<door posX="9" posY="6" slotId="2" direction="3" />
+
+	<door posX="5" posY="9" slotId="1" direction="3" />
+
+	<door posX="5" posY="8" slotId="1" direction="3" />
+
+	<door posX="5" posY="7" slotId="1" direction="3" />
+
+	<door posX="5" posY="6" slotId="1" direction="3" />
+
+	<console state="1" posX="4" posY="11" direction="0">
+		<slot slotId="1" />
+	</console>
+
+	<console state="1" posX="10" posY="11" direction="0">
+		<slot slotId="2" />
+	</console>
+
+	<player inputLine="Bob" posX="2" posY="9" direction="2" />
+
+	<player inputLine="Bobby" posX="2" posY="11" direction="2" />
+
+	<player inputLine="Julie" posX="3" posY="3" direction="1" />
+
+	<player inputLine="Marc" posX="5" posY="3" direction="1" />
+
+	<player inputLine="Bryan" posX="7" posY="3" direction="1" />
+
+	<player inputLine="Lisa" posX="9" posY="3" direction="1" />
+
+	<player inputLine="Bernard" posX="11" posY="3" direction="1" />
+
+	<player inputLine="Steve" posX="3" posY="17" direction="0" />
+
+	<player inputLine="Erica" posX="5" posY="17" direction="0" />
+
+	<player inputLine="Claire" posX="7" posY="17" direction="0" />
+
+	<player inputLine="Michel" posX="9" posY="17" direction="0" />
+
+	<player inputLine="Michelle" posX="11" posY="17" direction="0" />
+
+	<script outputLine="Bob" editMode="0" type="3">
+	</script>
+
+	<script outputLine="Bobby" editMode="0" type="3">
+	</script>
+
+	<function outputLine="f1" editMode="0" type="3">
+		<if>
+			<condition>
+				<captor type="Terminal"/>
+			</condition>
+			<container>
+				<action type="Activate"/>
+			</container>
+		</if>
+	</function>
+
+	<function outputLine="f2" editMode="0" type="3">
+		<if>
+			<condition>
+				<captor type="WallFront"/>
+			</condition>
+			<container>
+				<action type="TurnLeft"/>
+			</container>
+		</if>
+	</function>
+
+</level>

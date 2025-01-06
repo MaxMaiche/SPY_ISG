@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+
+	<dialogs>
+		<dialog text="[fr]Une des entrées se trouve droit devant !&#xA;&#xA;Mais faites attention, elle est surveillée par un garde ![/fr][en]One of the entrances is straight ahead!&#xA;&#xA;But be careful, it is guarded![/en]"/>
+		<dialog text="[fr]Il ne vous a pas encore vu, et ne vous inquiétez pas.&#xA;&#xA;Nos meilleurs agents ont étudié ses déplacements. Ils vous ont envoyé tout ce qu'ils pouvaient.[/fr][en]He hasn't seen you yet, and don't worry.&#xA;&#xA;Our best agents have studied his movements. They've sent you everything they could.[/en]"/>
+		<dialog text="[fr]Vous avez maintenant accès à deux fonctions : droite et gauche.&#xA;&#xA;Utilisez-les pour éviter le garde.[/fr][en]You now have access to two functions: right and left.&#xA;&#xA;Use them to avoid the guard.[/en]"/>
+		<dialog text="[fr]N'hésitez pas à fermer le script du garde s'il vous gêne.[/fr][en]Feel free to close the guard's script if it bothers you.[/en]"/>
+	</dialogs>
+
+
+	<score twoStars="0" threeStars="3888"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="0" />
+		<blockLimit blockType="TurnLeft" limit="0" />
+		<blockLimit blockType="TurnRight" limit="0" />
+		<blockLimit blockType="TurnBack" limit="0" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="0" />
+		<blockLimit blockType="IfThen" limit="0" />
+		<blockLimit blockType="IfElse" limit="0" />
+		<blockLimit blockType="ForLoop" limit="0" />
+		<blockLimit blockType="While" limit="0" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="OrOperator" limit="0" />
+		<blockLimit blockType="NotOperator" limit="0" />
+		<blockLimit blockType="WallFront" limit="0" />
+		<blockLimit blockType="WallLeft" limit="0" />
+		<blockLimit blockType="WallRight" limit="0" />
+		<blockLimit blockType="PathFront" limit="0" />
+		<blockLimit blockType="PathLeft" limit="0" />
+		<blockLimit blockType="PathRight" limit="0" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="0" />
+		<blockLimit blockType="Function" limit="0" />
+	</blockLimits>
+
+	<door posX="14" posY="6" slotId="0" direction="2" />
+
+	<enemy inputLine="[fr]Garde[/fr][en]Guard[/en]" posX="10" posY="4" direction="3" range="1" selfRange="False" typeRange="0" />
+
+	<player inputLine="Bob" posX="2" posY="2" direction="2" />
+
+	<door posX="10" posY="7" slotId="0" direction="0" />
+
+	<script outputLine="Bob" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="Exit"/>
+				</not>
+			</condition>
+			<container>
+				<if>
+					<condition>
+						<captor type="WallFront"/>
+					</condition>
+					<container>
+						<function name=""/>
+					</container>
+				</if>
+				<if>
+					<condition>
+						<captor type="FieldGate"/>
+					</condition>
+					<container>
+						<function name=""/>
+					</container>
+				</if>
+				<action type="Forward"/>
+			</container>
+		</while>
+	</script>
+
+	<script outputLine="[fr]Garde[/fr][en]Guard[/en]" editMode="0" type="3">
+		<forever>
+			<action type="Forward"/>
+			<action type="Forward"/>
+			<action type="Forward"/>
+			<action type="TurnBack"/>
+		</forever>
+	</script>
+
+	<function outputLine="[fr]droite[/fr][en]right[/en]" editMode="0" type="3">
+		<action type="TurnRight"/>
+	</function>
+
+	<function outputLine="[fr]gauche[/fr][en]left[/en]" editMode="0" type="3">
+		<action type="TurnLeft"/>
+	</function>
+
+</level>

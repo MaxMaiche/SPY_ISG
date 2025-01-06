@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+
+	<dialogs>
+		<dialog text="[fr]Vous êtes dans la bombe. Ne faites pas de faux mouvement ou vous ferez tout exploser.[/fr][en]You're inside the bomb. Don't make any wrong moves or you'll blow everything up.[/en]"/>
+		<dialog text="[fr]Agent Bob, à vous de jouer. J'espère que vous avez retenu le code...[/fr][en]Agent Bob, it's your turn. I hope you've remembered the code...[/en]"/>
+	</dialogs>
+
+
+	<dragdropDisabled />
+
+	<executionLimit amount="1" />
+
+	<fog />
+
+	<hideExits />
+
+	<score twoStars="0" threeStars="3488"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="0" />
+		<blockLimit blockType="TurnLeft" limit="0" />
+		<blockLimit blockType="TurnRight" limit="0" />
+		<blockLimit blockType="TurnBack" limit="0" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="0" />
+		<blockLimit blockType="IfThen" limit="0" />
+		<blockLimit blockType="IfElse" limit="0" />
+		<blockLimit blockType="ForLoop" limit="0" />
+		<blockLimit blockType="While" limit="0" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="OrOperator" limit="0" />
+		<blockLimit blockType="NotOperator" limit="0" />
+		<blockLimit blockType="WallFront" limit="0" />
+		<blockLimit blockType="WallLeft" limit="0" />
+		<blockLimit blockType="WallRight" limit="0" />
+		<blockLimit blockType="PathFront" limit="0" />
+		<blockLimit blockType="PathLeft" limit="0" />
+		<blockLimit blockType="PathRight" limit="0" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="0" />
+		<blockLimit blockType="Function" limit="0" />
+	</blockLimits>
+
+	<door posX="7" posY="7" slotId="0" direction="0" />
+
+	<console state="1" posX="9" posY="6" direction="0">
+		<slot slotId="1" />
+	</console>
+
+	<door posX="10" posY="6" slotId="1" direction="3" />
+
+	<player inputLine="Bob" posX="2" posY="2" direction="2" />
+
+	<enemy inputLine="Eve" posX="15" posY="6" direction="3" range="1" selfRange="False" typeRange="0" />
+
+	<script outputLine="Bob" editMode="0" type="3">
+		<function name=""/>
+		<function name=""/>
+		<function name=""/>
+		<function name=""/>
+	</script>
+
+	<function outputLine="1" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="Terminal"/>
+				</not>
+			</condition>
+			<container>
+				<action type="Forward"/>
+			</container>
+		</while>
+		<action type="Activate"/>
+	</function>
+
+	<function outputLine="2" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="FieldGate"/>
+				</not>
+			</condition>
+			<container>
+				<action type="Forward"/>
+			</container>
+		</while>
+		<action type="TurnLeft"/>
+	</function>
+
+	<function outputLine="3" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="WallFront"/>
+				</not>
+			</condition>
+			<container>
+				<action type="Forward"/>
+			</container>
+		</while>
+		<action type="TurnRight"/>
+	</function>
+
+	<function outputLine="4" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="RedArea"/>
+				</not>
+			</condition>
+			<container>
+				<action type="Forward"/>
+			</container>
+		</while>
+	</function>
+
+</level>

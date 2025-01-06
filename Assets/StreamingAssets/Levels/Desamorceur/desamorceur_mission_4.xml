@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+
+	<dialogs>
+		<dialog text="[fr]Plus vous vous rapprochez, plus les gardes sont nombreux et plus il faut rester discrets.&#xA;&#xA;Nous avons réussi à trouver un passage souterrain, ils ne peuvent donc pas vous voir.&#xA;&#xA;Mais ne faites aucun bruit ![/fr][en]The closer you get, the more guards there are, and the more you need to stay discreet.&#xA;&#xA;We managed to find an underground passage, so they can't see you.&#xA;&#xA;But don't make any noise![/en]"/>
+		<dialog text="[fr]Dans le script du robot, vous trouverez une fonction nommée 'sortir'.&#xA;&#xA;A vous de créer la fonction permettant d'atteindre le bout du tunnel.&#xA;&#xA;Premièrement, ajoutez une nouvelle fonction en appuyant sur le + à droite.[/fr][en]In the robot's script, you will find a function named 'sortir' (exit).&#xA;&#xA;It's up to you to create the function to reach the end of the tunnel.&#xA;&#xA;First, add a new function by pressing the + button on the right.[/en]" img="ajout_container_fonction.png"/>
+		<dialog text="[fr]Puis, renommez cette fonction en 'sortir'.[/fr][en]Then rename this function to 'sortir' (exit).[/en]" img="nom_container_fonction.png"/>	
+		<dialog text="[fr]Enfin, ajoutez les actions nécessaires pour atteindre la sortie.&#xA;&#xA;Bon courage Agent Bob ![/fr][en]Finally, add the necessary actions to reach the exit.&#xA;&#xA;Good luck, Agent Bob![/en]"/>
+	</dialogs>
+
+
+	<score twoStars="2000" threeStars="4136"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="-1" />
+		<blockLimit blockType="TurnLeft" limit="-1" />
+		<blockLimit blockType="TurnRight" limit="-1" />
+		<blockLimit blockType="TurnBack" limit="-1" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="0" />
+		<blockLimit blockType="IfThen" limit="-1" />
+		<blockLimit blockType="IfElse" limit="-1" />
+		<blockLimit blockType="ForLoop" limit="-1" />
+		<blockLimit blockType="While" limit="-1" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="-1" />
+		<blockLimit blockType="OrOperator" limit="-1" />
+		<blockLimit blockType="NotOperator" limit="-1" />
+		<blockLimit blockType="WallFront" limit="-1" />
+		<blockLimit blockType="WallLeft" limit="-1" />
+		<blockLimit blockType="WallRight" limit="-1" />
+		<blockLimit blockType="PathFront" limit="-1" />
+		<blockLimit blockType="PathLeft" limit="-1" />
+		<blockLimit blockType="PathRight" limit="-1" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="-1" />
+		<blockLimit blockType="Function" limit="0" />
+	</blockLimits>
+
+	<player inputLine="Bob" posX="5" posY="5" direction="2" />
+
+	<enemy inputLine="[fr]Garde[/fr][en]Guard[/en]" posX="3" posY="2" direction="2" range="3" selfRange="False" typeRange="0" />
+
+	<enemy inputLine="[fr]Garde[/fr][en]Guard[/en]" posX="12" posY="3" direction="1" range="3" selfRange="False" typeRange="0" />
+
+	<enemy inputLine="[fr]Garde[/fr][en]Guard[/en]" posX="11" posY="12" direction="3" range="3" selfRange="False" typeRange="0" />
+
+	<enemy inputLine="[fr]Garde[/fr][en]Guard[/en]" posX="2" posY="11" direction="0" range="3" selfRange="False" typeRange="0" />
+
+	<script outputLine="Bob" editMode="0" type="3">
+		<function name="sortir"/>
+	</script>
+
+</level>

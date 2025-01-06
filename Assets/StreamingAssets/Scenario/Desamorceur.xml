@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<scenario name="Desamorceur" desc="Vous devez désamorcer une bombe pour sauver des robots.">
+	<level src = "Levels/desamorceur_mission_1.xml" name = "desamorceur_mission_1" >
+		<dialogs>
+			<dialog text ="[fr]30 septembre 2052
+
+Bip... Bip... Bip...[/fr][en]September 30, 2052
+
+Beep... Beep... Beep...[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Agent spécial Bob.
+
+Votre mission, si vous l'acceptez, est de sauver votre famille de robots.
+
+Une bombe a été placée dans un Darty à proximité.
+
+Vous avez exactement 15 minutes pour la désamorcer après votre arrivée.[/fr][en]Special Agent Bob.
+
+Your mission, should you choose to accept it, is to save your robot family.
+
+A bomb has been placed in a nearby Darty store.
+
+You have exactly 15 minutes to defuse it upon arrival.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Voici ce que vous devez savoir :
+
+- La bombe est cachée dans l'un des rayons, mais nous ignorons lequel.
+- Un code sera nécessaire pour la désamorcer.[/fr][en]Here is what you need to know:
+
+- The bomb is hidden in one of the aisles, but we don't know which one.
+- A code will be required to defuse it.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Attention, Bob : le magasin est infesté de drones de surveillance.
+
+Soyez discret, ou ils activeront la bombe plus tôt.[/fr][en]Be careful, Bob: the store is infested with surveillance drones.
+
+Stay discreet, or they will activate the bomb earlier.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Votre matériel sera limité.[/fr][en]Your equipment will be limited.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Une fois la bombe désamorcée, utilisez le local serveur pour transmettre un signal confirmant votre succès.[/fr][en]Once the bomb is defused, use the server room to send a signal confirming your success.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Échouez, et votre famille robotique ne survivra pas.
+
+Bonne chance, Agent Bob. Nous comptons sur vous.[/fr][en]Fail, and your robotic family will not survive.
+
+Good luck, Agent Bob. We are counting on you.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Ce message s'autodétruira dans 3... 2... 1...[/fr][en]This message will self-destruct in 3... 2... 1...[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_2.xml" name = "desamorceur_mission_2" >
+		<dialogs>
+			<dialog text ="[fr]Agent Bob, vous êtes sur le terrain.
+
+Votre objectif est de passer les drones de surveillance pour rentrer dans le Datry.[/fr][en]Agent Bob, you are on the ground.
+
+Your objective is to get past the surveillance drones to enter the Datry store.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Pour l'instant, avancez, vous vous rapprochez.
+Mais restez discrets.[/fr][en]For now, move forward; you are getting closer.
+But stay discreet.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Pour cela, on vous a d'ores et déjà préparé les instructions nécessaires à distance.
+
+La fonction présente à droite est liée au bloc de fonction rose présent dans le script du robot.
+
+Allez-y, dépêchez-vous, lancez ![/fr][en]For this, we have already prepared the necessary instructions remotely.
+
+The function on the right is linked to the pink function block in the robot's script.
+
+Go ahead, hurry up, execute it![/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_3.xml" name = "desamorceur_mission_3" >
+		<dialogs>
+			<dialog text ="[fr]Bien Agent Bob, vous vous rapprochez. Vous y êtes bientôt.
+
+Le Datry est toujours tout droit.[/fr][en]Good, Agent Bob, you are getting closer. You're almost there.
+
+The Datry store is straight ahead.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]A vous de jouer. Maintenant que vous savez que l'on peut exécuter à distance des blocs, grâce à une fonction.
+
+Pour que cela puisse correctement fonctionner, il faut appeler cette fonction.[/fr][en]It's your turn. Now that you know we can execute blocks remotely using a function,
+
+for it to work properly, you need to call this function.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Il suffit de regarder le nom du script de la fonction comme sur l'image ci-dessous.[/fr][en]You just need to look at the name of the function script as shown in the image below.[/en]" img="appel_fonction.png" enableInteraction ="0" />
+			<dialog text ="[fr]Puis de rentrer ce nom dans le bloc fonction présent dans le script du robot.[/fr][en]Then enter this name in the function block in the robot's script.[/en]" img="bloc_appel_fonction.png" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_4.xml" name = "desamorceur_mission_4" >
+		<dialogs>
+			<dialog text ="[fr]Plus vous vous rapprochez, plus les gardes sont nombreux et plus il faut rester discrets.
+
+Nous avons réussi à trouver un passage souterrain, ils ne peuvent donc pas vous voir.
+
+Mais ne faites aucun bruit ![/fr][en]The closer you get, the more guards there are, and the more you need to stay discreet.
+
+We managed to find an underground passage, so they can't see you.
+
+But don't make any noise![/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Dans le script du robot, vous trouverez une fonction nommée 'sortir'.
+
+A vous de créer la fonction permettant d'atteindre le bout du tunnel.
+
+Premièrement, ajoutez une nouvelle fonction en appuyant sur le + à droite.[/fr][en]In the robot's script, you will find a function named 'sortir' (exit).
+
+It's up to you to create the function to reach the end of the tunnel.
+
+First, add a new function by pressing the + button on the right.[/en]" img="ajout_container_fonction.png" enableInteraction ="0" />
+			<dialog text ="[fr]Puis, renommez cette fonction en 'sortir'.[/fr][en]Then rename this function to 'sortir' (exit).[/en]" img="nom_container_fonction.png" enableInteraction ="0" />
+			<dialog text ="[fr]Enfin, ajoutez les actions nécessaires pour atteindre la sortie.
+
+Bon courage Agent Bob ![/fr][en]Finally, add the necessary actions to reach the exit.
+
+Good luck, Agent Bob![/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_5.xml" name = "desamorceur_mission_5" >
+		<dialogs>
+			<dialog text ="[fr]Une des entrées se trouve droit devant !
+
+Mais faites attention, elle est surveillée par un garde ![/fr][en]One of the entrances is straight ahead!
+
+But be careful, it is guarded![/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Il ne vous a pas encore vu, et ne vous inquiétez pas.
+
+Nos meilleurs agents ont étudié ses déplacements. Ils vous ont envoyé tout ce qu'ils pouvaient.[/fr][en]He hasn't seen you yet, and don't worry.
+
+Our best agents have studied his movements. They've sent you everything they could.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Vous avez maintenant accès à deux fonctions : droite et gauche.
+
+Utilisez-les pour éviter le garde.[/fr][en]You now have access to two functions: right and left.
+
+Use them to avoid the guard.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]N'hésitez pas à fermer le script du garde s'il vous gêne.[/fr][en]Feel free to close the guard's script if it bothers you.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_6.xml" name = "desamorceur_mission_6" >
+		<dialogs>
+			<dialog text ="[fr]Vous voilà entré ! Bien joué, Agent Bob.
+
+Il faut maintenant vous infiltrer dans le Datry, tout en restant discret.[/fr][en]You've made it inside! Well done, Agent Bob.
+
+Now you need to infiltrate the Datry store while staying discreet.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Malheureusement, nous n'avons pu vous transmettre que quelques blocs.
+
+Il vous faudra donc utiliser les fonctions à bon escient pour vous en sortir.
+
+Bon courage Agent Bob ![/fr][en]Unfortunately, we were only able to send you a few blocks.
+
+You will need to use the functions wisely to make it through.
+
+Good luck, Agent Bob![/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_7.xml" name = "desamorceur_mission_7" >
+		<dialogs>
+			<dialog text ="[fr]Vous avez passé les premiers gardes. Bravo !
+
+Malheureusement vous vous retrouvez bloqué par des portes.[/fr][en]You've made it past the first guards. Well done!
+
+Unfortunately, you are now blocked by some doors.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Heureusement, un robot, Bobby, vous a aperçu et peut vous aider !
+
+Nous vous avons d'ores et déjà transmis la fonction nécessaire pour pouvoir continuer.
+
+A vous de vous en servir pour les deux robots ![/fr][en]Fortunately, a robot named Bobby has spotted you and can help!
+
+We have already sent you the function needed to proceed.
+
+It's up to you to use it for both robots![/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_8.xml" name = "desamorceur_mission_8" >
+		<dialogs>
+			<dialog text ="[fr]Bobby et vous avez réussi à avancer dans le Datry sans attirer l'attention.
+
+Et vous avez trouvé une partie des robots en danger ! Génial.[/fr][en]Bobby and you managed to move forward in the Datry without drawing attention.
+
+And you found some of the robots in danger! Great.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Visiblement, mis à part Bobby, ils sont tous désactivés. Ils ne vous seront d'aucune aide.[/fr][en]Apparently, apart from Bobby, they are all deactivated. They won't be of any help to you.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Pour continuer à avancer, vous devez de nouveau coopérer avec Bobby.
+
+Mais cette fois-ci, il ne pourra pas continuer avec vous.[/fr][en]To keep moving forward, you'll need to cooperate with Bobby again.
+
+But this time, he won't be able to continue with you.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Voici deux fonctions et quelques blocs pour vous aider.
+
+Bonne chance ! Et n'oubliez pas : restez discret.[/fr][en]Here are two functions and a few blocks to help you.
+
+Good luck! And don't forget: stay discreet.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_9.xml" name = "desamorceur_mission_9" >
+		<dialogs>
+			<dialog text ="[fr]Vous venez de trouver une salle emplie de robots.
+
+Nous avons trouvé un moyen de les activer à distance !
+
+Libérez-les ! Dépêchez-vous, il ne vous reste plus beaucoup de temps ![/fr][en]You have just found a room filled with robots.
+
+We've found a way to activate them remotely!
+
+Free them! Hurry, you don't have much time left![/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_10.xml" name = "desamorceur_mission_10" >
+		<dialogs>
+			<dialog text ="[fr]Regardez Agent Bob, nous avons réussi à récupérer la fonction que vous avez créé dans la salle précédente.
+
+Elle vous sera très utile pour éviter le garde.[/fr][en]Look, Agent Bob, we managed to retrieve the function you created in the previous room.
+
+It will be very useful for avoiding the guard.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_11.xml" name = "desamorceur_mission_11" >
+		<dialogs>
+			<dialog text ="[fr]Vous y êtes presque !
+
+Nos agents ont pu analyser le terrain et nous ont indiqué que la bombe se trouvait dans la salle suivante.[/fr][en]You're almost there!
+
+Our agents were able to analyze the area and indicated that the bomb is in the next room.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Prenez soin d'éviter les gardes. Et restez silencieux.
+
+Bonne chance Agent Bob. On compte sur vous.[/fr][en]Be careful to avoid the guards. And stay silent.
+
+Good luck, Agent Bob. We are counting on you.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_12.xml" name = "desamorceur_mission_12" >
+		<dialogs>
+			<dialog text ="[fr]Bravo Agent Bob ! La bombe se trouve juste là, sur un des bureaux.
+
+Pour pouvoir la désamorcer nous avons trouvé un moyen de vous digitaliser à l'intérieur de la bombe.
+
+Vous n'aurez qu'un essai. Prenez garde.[/fr][en]Well done, Agent Bob! The bomb is right there, on one of the desks.
+
+To disarm it, we've found a way to digitize you inside the bomb.
+
+You'll only have one attempt. Be careful.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Le code est constitué de 4 chiffres. Il y a des indices dans la pièce.
+
+Observez bien autour de vous.[/fr][en]The code consists of 4 digits. There are clues in the room.
+
+Look around carefully.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_13.xml" name = "desamorceur_mission_13" >
+		<dialogs>
+			<dialog text ="[fr]Vous êtes dans la bombe. Ne faites pas de faux mouvement ou vous ferez tout exploser.[/fr][en]You're inside the bomb. Don't make any wrong moves or you'll blow everything up.[/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Agent Bob, à vous de jouer. J'espère que vous avez retenu le code...[/fr][en]Agent Bob, it's your turn. I hope you've remembered the code...[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_14.xml" name = "desamorceur_mission_14" >
+		<dialogs>
+			<dialog text ="[fr]Bravo ! Vous avez réussi à désamorcer la bombe !
+
+Mais dépêchez-vous, il vous faut libérer les derniers robots et sortir.[/fr][en]Well done! You’ve successfully disarmed the bomb!
+
+But hurry up, you need to free the last robots and get out.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/desamorceur_mission_15.xml" name = "desamorceur_mission_15" >
+		<dialogs>
+			<dialog text ="[fr]Bravo Agent Bob !
+
+Vous vous en êtes tous sortis sain et sauf ![/fr][en]Well done, Agent Bob!
+
+You all made it out safe and sound![/en]" enableInteraction ="0" />
+			<dialog text ="[fr]Nous savions que nous pouvions compter sur vous !
+
+Profitez de votre victoire et de votre famille ! 
+
+Nous vous recontacterons.[/fr][en]We knew we could count on you!
+
+Enjoy your victory and your family!
+
+We'll contact you again soon.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+</scenario>

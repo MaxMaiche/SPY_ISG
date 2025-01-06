@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+
+	<dialogs>
+		<dialog text="[fr]30 septembre 2052&#xA;&#xA;Bip... Bip... Bip...[/fr][en]September 30, 2052&#xA;&#xA;Beep... Beep... Beep...[/en]"/>
+		<dialog text="[fr]Agent spécial Bob.&#xA;&#xA;Votre mission, si vous l'acceptez, est de sauver votre famille de robots.&#xA;&#xA;Une bombe a été placée dans un Darty à proximité.&#xA;&#xA;Vous avez exactement 15 minutes pour la désamorcer après votre arrivée.[/fr][en]Special Agent Bob.&#xA;&#xA;Your mission, should you choose to accept it, is to save your robot family.&#xA;&#xA;A bomb has been placed in a nearby Darty store.&#xA;&#xA;You have exactly 15 minutes to defuse it upon arrival.[/en]"/>
+		<dialog text="[fr]Voici ce que vous devez savoir :&#xA;&#xA;- La bombe est cachée dans l'un des rayons, mais nous ignorons lequel.&#xA;- Un code sera nécessaire pour la désamorcer.[/fr][en]Here is what you need to know:&#xA;&#xA;- The bomb is hidden in one of the aisles, but we don't know which one.&#xA;- A code will be required to defuse it.[/en]"/>
+		<dialog text="[fr]Attention, Bob : le magasin est infesté de drones de surveillance.&#xA;&#xA;Soyez discret, ou ils activeront la bombe plus tôt.[/fr][en]Be careful, Bob: the store is infested with surveillance drones.&#xA;&#xA;Stay discreet, or they will activate the bomb earlier.[/en]"/>
+		<dialog text="[fr]Votre matériel sera limité.[/fr][en]Your equipment will be limited.[/en]"/>
+		<dialog text="[fr]Une fois la bombe désamorcée, trouvez un moyen de sortir.[/fr][en]Once the bomb is defused, you will need to find a way out.[/en]"/>
+		<dialog text="[fr]Échouez, et votre famille robotique ne survivra pas.&#xA;&#xA;Bonne chance, Agent Bob. Nous comptons sur vous.[/fr][en]Fail, and your robotic family will not survive.&#xA;&#xA;Good luck, Agent Bob. We are counting on you.[/en]"/>
+		<dialog text="[fr]Ce message s'autodétruira dans 3... 2... 1...[/fr][en]This message will self-destruct in 3... 2... 1...[/en]"/>
+	</dialogs>
+
+
+
+	<score twoStars="0" threeStars="5120"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="1" />
+		<blockLimit blockType="TurnLeft" limit="1" />
+		<blockLimit blockType="TurnRight" limit="0" />
+		<blockLimit blockType="TurnBack" limit="0" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="0" />
+		<blockLimit blockType="IfThen" limit="0" />
+		<blockLimit blockType="IfElse" limit="0" />
+		<blockLimit blockType="ForLoop" limit="0" />
+		<blockLimit blockType="While" limit="1" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="OrOperator" limit="0" />
+		<blockLimit blockType="NotOperator" limit="1" />
+		<blockLimit blockType="WallFront" limit="0" />
+		<blockLimit blockType="WallLeft" limit="0" />
+		<blockLimit blockType="WallRight" limit="0" />
+		<blockLimit blockType="PathFront" limit="0" />
+		<blockLimit blockType="PathLeft" limit="0" />
+		<blockLimit blockType="PathRight" limit="0" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="1" />
+		<blockLimit blockType="Function" limit="0" />
+	</blockLimits>
+
+	<decoration name="Modern Furniture/Prefabs/Desk" posX="2" posY="3" direction="2" />
+
+	<door posX="8" posY="2" slotId="0" direction="3" />
+
+	<console state="0" posX="7" posY="3" direction="0">
+		<slot slotId="0" />
+	</console>
+
+	<player inputLine="Bob" posX="2" posY="2" direction="1" />
+
+	<decoration name="Modern Furniture/Prefabs/Round Table" posX="4" posY="4" direction="0" />
+
+	<decoration name="Modern Furniture/Prefabs/Single Frame chair" posX="5" posY="4" direction="3" />
+
+	<decoration name="Modern Furniture/Prefabs/Single Frame chair" posX="3" posY="4" direction="2" />
+
+	<script outputLine="Bob" editMode="2" type="3">
+	</script>
+
+</level>

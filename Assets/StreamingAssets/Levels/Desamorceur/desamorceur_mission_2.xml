@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<level>
+	<map>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="2" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="0" /><cell value="3" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="1" /><cell value="-1" /></line>
+		<line><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /><cell value="-1" /></line>
+	</map>
+	
+	<dialogs>
+		<dialog text="[fr]Agent Bob, vous êtes sur le terrain.&#xA;&#xA;Votre objectif est de passer les drones de surveillance pour rentrer dans le Datry.[/fr][en]Agent Bob, you are on the ground.&#xA;&#xA;Your objective is to get past the surveillance drones to enter the Datry store.[/en]"/>
+		<dialog text="[fr]Pour l'instant, avancez, vous vous rapprochez.&#xA;Mais restez discrets.[/fr][en]For now, move forward; you are getting closer.&#xA;But stay discreet.[/en]"/>
+		<dialog text="[fr]Pour cela, on vous a d'ores et déjà préparé les instructions nécessaires à distance.&#xA;&#xA;La fonction présente à droite est liée au bloc de fonction rose présent dans le script du robot.&#xA;&#xA;Allez-y, dépêchez-vous, lancez ![/fr][en]For this, we have already prepared the necessary instructions remotely.&#xA;&#xA;The function on the right is linked to the pink function block in the robot's script.&#xA;&#xA;Go ahead, hurry up, execute it![/en]"/>
+	</dialogs>
+
+
+	<dragdropDisabled />
+
+	<score twoStars="0" threeStars="3912"/>
+
+	<blockLimits>
+		<blockLimit blockType="Forward" limit="0" />
+		<blockLimit blockType="TurnLeft" limit="0" />
+		<blockLimit blockType="TurnRight" limit="0" />
+		<blockLimit blockType="TurnBack" limit="0" />
+		<blockLimit blockType="Activate" limit="0" />
+		<blockLimit blockType="Wait" limit="0" />
+		<blockLimit blockType="IfThen" limit="0" />
+		<blockLimit blockType="IfElse" limit="0" />
+		<blockLimit blockType="ForLoop" limit="0" />
+		<blockLimit blockType="While" limit="0" />
+		<blockLimit blockType="Forever" limit="0" />
+		<blockLimit blockType="AndOperator" limit="0" />
+		<blockLimit blockType="OrOperator" limit="0" />
+		<blockLimit blockType="NotOperator" limit="0" />
+		<blockLimit blockType="WallFront" limit="0" />
+		<blockLimit blockType="WallLeft" limit="0" />
+		<blockLimit blockType="WallRight" limit="0" />
+		<blockLimit blockType="PathFront" limit="0" />
+		<blockLimit blockType="PathLeft" limit="0" />
+		<blockLimit blockType="PathRight" limit="0" />
+		<blockLimit blockType="Enemy" limit="0" />
+		<blockLimit blockType="RedArea" limit="0" />
+		<blockLimit blockType="FieldGate" limit="0" />
+		<blockLimit blockType="Terminal" limit="0" />
+		<blockLimit blockType="Exit" limit="0" />
+		<blockLimit blockType="Function" limit="0" />
+	</blockLimits>
+
+	<player inputLine="Bob" posX="2" posY="2" direction="2" />
+
+	<script outputLine="Bob" editMode="0" type="3">
+		<function name="avancer"/>
+	</script>
+
+	<function outputLine="avancer" editMode="0" type="3">
+		<while>
+			<condition>
+				<not>
+					<captor type="Exit"/>
+				</not>
+			</condition>
+			<container>
+				<action type="Forward"/>
+			</container>
+		</while>
+	</function>
+
+</level>
