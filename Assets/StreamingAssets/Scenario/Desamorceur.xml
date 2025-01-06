@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <scenario name="Desamorceur" desc="Vous devez désamorcer une bombe pour sauver des robots.">
-	<level src = "Levels/desamorceur_mission_1.xml" name = "desamorceur_mission_1" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_1.xml" name = "desamorceur_mission_1" >
 		<dialogs>
 			<dialog text ="[fr]30 septembre 2052
 
@@ -42,7 +42,7 @@ Good luck, Agent Bob. We are counting on you.[/en]" enableInteraction ="0" />
 			<dialog text ="[fr]Ce message s'autodétruira dans 3... 2... 1...[/fr][en]This message will self-destruct in 3... 2... 1...[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_2.xml" name = "desamorceur_mission_2" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_2.xml" name = "desamorceur_mission_2" >
 		<dialogs>
 			<dialog text ="[fr]Agent Bob, vous êtes sur le terrain.
 
@@ -63,7 +63,7 @@ The function on the right is linked to the pink function block in the robot's sc
 Go ahead, hurry up, execute it![/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_3.xml" name = "desamorceur_mission_3" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_3.xml" name = "desamorceur_mission_3" >
 		<dialogs>
 			<dialog text ="[fr]Bien Agent Bob, vous vous rapprochez. Vous y êtes bientôt.
 
@@ -79,7 +79,7 @@ for it to work properly, you need to call this function.[/en]" enableInteraction
 			<dialog text ="[fr]Puis de rentrer ce nom dans le bloc fonction présent dans le script du robot.[/fr][en]Then enter this name in the function block in the robot's script.[/en]" img="bloc_appel_fonction.png" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_4.xml" name = "desamorceur_mission_4" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_4.xml" name = "desamorceur_mission_4" >
 		<dialogs>
 			<dialog text ="[fr]Plus vous vous rapprochez, plus les gardes sont nombreux et plus il faut rester discrets.
 
@@ -107,7 +107,7 @@ Bon courage Agent Bob ![/fr][en]Finally, add the necessary actions to reach the 
 Good luck, Agent Bob![/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_5.xml" name = "desamorceur_mission_5" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_5.xml" name = "desamorceur_mission_5" >
 		<dialogs>
 			<dialog text ="[fr]Une des entrées se trouve droit devant !
 
@@ -127,7 +127,7 @@ Use them to avoid the guard.[/en]" enableInteraction ="0" />
 			<dialog text ="[fr]N'hésitez pas à fermer le script du garde s'il vous gêne.[/fr][en]Feel free to close the guard's script if it bothers you.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_6.xml" name = "desamorceur_mission_6" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_6.xml" name = "desamorceur_mission_6" >
 		<dialogs>
 			<dialog text ="[fr]Vous voilà entré ! Bien joué, Agent Bob.
 
@@ -145,7 +145,7 @@ You will need to use the functions wisely to make it through.
 Good luck, Agent Bob![/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_7.xml" name = "desamorceur_mission_7" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_7.xml" name = "desamorceur_mission_7" >
 		<dialogs>
 			<dialog text ="[fr]Vous avez passé les premiers gardes. Bravo !
 
@@ -163,7 +163,7 @@ We have already sent you the function needed to proceed.
 It's up to you to use it for both robots![/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_8.xml" name = "desamorceur_mission_8" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_8.xml" name = "desamorceur_mission_8" >
 		<dialogs>
 			<dialog text ="[fr]Bobby et vous avez réussi à avancer dans le Datry sans attirer l'attention.
 
@@ -183,7 +183,7 @@ Bonne chance ! Et n'oubliez pas : restez discret.[/fr][en]Here are two functions
 Good luck! And don't forget: stay discreet.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_9.xml" name = "desamorceur_mission_9" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_9.xml" name = "desamorceur_mission_9" >
 		<dialogs>
 			<dialog text ="[fr]Vous venez de trouver une salle emplie de robots.
 
@@ -196,7 +196,7 @@ We've found a way to activate them remotely!
 Free them! Hurry, you don't have much time left![/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_10.xml" name = "desamorceur_mission_10" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_10.xml" name = "desamorceur_mission_10" >
 		<dialogs>
 			<dialog text ="[fr]Regardez Agent Bob, nous avons réussi à récupérer la fonction que vous avez créé dans la salle précédente.
 
@@ -205,7 +205,7 @@ Elle vous sera très utile pour éviter le garde.[/fr][en]Look, Agent Bob, we ma
 It will be very useful for avoiding the guard.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_11.xml" name = "desamorceur_mission_11" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_11.xml" name = "desamorceur_mission_11" >
 		<dialogs>
 			<dialog text ="[fr]Vous y êtes presque !
 
@@ -219,7 +219,7 @@ Bonne chance Agent Bob. On compte sur vous.[/fr][en]Be careful to avoid the guar
 Good luck, Agent Bob. We are counting on you.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_12.xml" name = "desamorceur_mission_12" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_12.xml" name = "desamorceur_mission_12" >
 		<dialogs>
 			<dialog text ="[fr]Bravo Agent Bob ! La bombe se trouve juste là, sur un des bureaux.
 
@@ -237,13 +237,13 @@ Observez bien autour de vous.[/fr][en]The code consists of 4 digits. There are c
 Look around carefully.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_13.xml" name = "desamorceur_mission_13" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_13.xml" name = "desamorceur_mission_13" >
 		<dialogs>
 			<dialog text ="[fr]Vous êtes dans la bombe. Ne faites pas de faux mouvement ou vous ferez tout exploser.[/fr][en]You're inside the bomb. Don't make any wrong moves or you'll blow everything up.[/en]" enableInteraction ="0" />
 			<dialog text ="[fr]Agent Bob, à vous de jouer. J'espère que vous avez retenu le code...[/fr][en]Agent Bob, it's your turn. I hope you've remembered the code...[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_14.xml" name = "desamorceur_mission_14" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_14.xml" name = "desamorceur_mission_14" >
 		<dialogs>
 			<dialog text ="[fr]Bravo ! Vous avez réussi à désamorcer la bombe !
 
@@ -252,7 +252,7 @@ Mais dépêchez-vous, il vous faut libérer les derniers robots et sortir.[/fr][
 But hurry up, you need to free the last robots and get out.[/en]" enableInteraction ="0" />
 		</dialogs>
 	</level>
-	<level src = "Levels/desamorceur_mission_15.xml" name = "desamorceur_mission_15" >
+	<level src = "Levels/Desamorceur/desamorceur_mission_15.xml" name = "desamorceur_mission_15" >
 		<dialogs>
 			<dialog text ="[fr]Bravo Agent Bob !
 
