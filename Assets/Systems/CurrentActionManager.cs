@@ -215,7 +215,19 @@ public class CurrentActionManager : FSystem
 				// - Recuperer le nom de la fonction
 				string functionName = action.GetComponent<Function>().functionName;
 				// - recuperer la fonction correspondante
+				bool found = false;
+				foreach (Transform child in agent.GetComponent<ScriptRef>().biblioFunction.transform){
+					if (child.gameObject.name == functionName){
+						found = true;
+						break;
+					}
+				}
+				if (found == false){
+					GameObjectManager.addComponent<NewEnd>(MainLoop.instance.gameObject, new { endType = NewEnd.BadFunctionName });
+					return null;
+				}
 				GameObject function = agent.GetComponent<ScriptRef>().biblioFunction.transform.Find(functionName).gameObject;
+
 				// Faire une copie de la fonction
 				// GameObject functionCopy = GameObject.Instantiate(function);
 				// Rajoute chaque child de la fonction dans le executableFunction

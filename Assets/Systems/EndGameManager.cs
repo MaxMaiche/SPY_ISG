@@ -200,6 +200,28 @@ public class EndGameManager : FSystem {
 				}
 			}));
 		}
+		else if (f_requireEndPanel.First().GetComponent<NewEnd>().endType == NewEnd.BadFunctionName)
+		{
+			GameObjectManager.setGameObjectState(endPanel.transform.Find("ScoreCanvas").gameObject, false);
+			endPanel.transform.Find("Content").GetComponent<TextMeshProUGUI>().text = gameData.localization[54];
+			Transform buttons = endPanel.transform.Find("Buttons");
+			GameObjectManager.setGameObjectState(buttons.Find("ReloadLevel").gameObject, false);
+			GameObjectManager.setGameObjectState(buttons.Find("ReloadState").gameObject, true);
+			GameObjectManager.setGameObjectState(buttons.Find("MainMenu").gameObject, false);
+			GameObjectManager.setGameObjectState(buttons.Find("NextLevel").gameObject, false);
+			MainLoop.instance.StartCoroutine(delayNewButtonFocused(buttons.Find("ReloadState").gameObject));
+			endPanel.GetComponent<AudioSource>().clip = Resources.Load("Sound/LoseSound") as AudioClip;
+			endPanel.GetComponent<AudioSource>().loop = true;
+			endPanel.GetComponent<AudioSource>().Play();
+			MainLoop.instance.StartCoroutine(delaySendStatement(endPanel, new
+			{
+				verb = "bugged",
+				objectType = "program",
+				activityExtensions = new Dictionary<string, string>() {
+					{ "error", "BadFunctionName" }
+				}
+			}));
+		}
 		else if (f_requireEndPanel.First().GetComponent<NewEnd>().endType == NewEnd.NoMoreAttempt)
 		{
 			GameObjectManager.setGameObjectState(endPanel.transform.Find("ScoreCanvas").gameObject, false);

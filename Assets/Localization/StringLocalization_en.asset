@@ -1333,6 +1333,10 @@ MonoBehaviour:
     m_Localized: Credits
     m_Metadata:
       m_Items: []
+  - m_Id: 193493418258903040
+    m_Localized: There is a bad function name !
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
