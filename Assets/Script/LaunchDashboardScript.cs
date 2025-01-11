@@ -6,7 +6,6 @@ using TMPro;
 
 class Program: MonoBehaviour
 {
-    public TMP_InputField inputField;
 
     void Start()
     {
@@ -15,16 +14,15 @@ class Program: MonoBehaviour
 
     public void launchPythonScript()
     {
-        String arg = inputField.text;
 
         // Chemin vers l'exécutable Python
         string pythonPath = @"python.exe";
 
         // Chemin vers le script Python
-        string scriptPath = @"dashboard_plotly.py";
+        string scriptPath = @"test.py";
 
         // Arguments à passer au script Python
-        string arguments = $"\"{scriptPath}\" {arg}";
+        string arguments = $"\"{scriptPath}\"";
 
         // Configuration du processus
         ProcessStartInfo psi = new ProcessStartInfo

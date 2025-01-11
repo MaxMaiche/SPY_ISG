@@ -6,6 +6,7 @@ from requests.auth import HTTPBasicAuth
 import json
 from datetime import datetime
 from urllib.parse import urljoin
+import webbrowser
 import xml.etree.ElementTree as ET
 
 all_session_names = []
@@ -196,8 +197,6 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
     global executed_responses
     global scenarios_dropdown
 
-    print(f"Session Names: {session_names}")
-    print(f"Scenario Dropdown: {scenario_dropdown}")
     if not session_names:
         return default_figure
 
@@ -347,7 +346,6 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
         }
         for session_name, data in all_session_data.items():
             if session_name in session_names:
-                print(f"Session Name: {session_name}")
                 if level in data["levels"]:
                     idx = data["levels"].index(level)
                     combined_data[level]["max_score"].append(data["max_scores"][idx])
@@ -383,8 +381,9 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
 def update_scenario_dropdown(n_clicks):
     if not scenarios_dropdown:
         return []
-    print(f"Scenarios Dropdown: {scenarios_dropdown}")
     return [{"label": name, "value": name} for name in scenarios_dropdown]
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    port = 8050
+    webbrowser.open(f"http://127.0.0.1:{port}")
+    app.run_server(debug=False, port = port)
