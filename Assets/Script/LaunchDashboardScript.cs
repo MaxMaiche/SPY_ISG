@@ -19,7 +19,7 @@ class Program: MonoBehaviour
         string pythonPath = @"python.exe";
 
         // Chemin vers le script Python
-        string scriptPath = @"test.py";
+        string scriptPath = @"dashboard_dash_plotly.py";
 
         // Arguments à passer au script Python
         string arguments = $"\"{scriptPath}\"";
