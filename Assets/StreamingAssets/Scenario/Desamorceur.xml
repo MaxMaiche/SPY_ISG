@@ -247,9 +247,28 @@ Look around carefully.[/en]" enableInteraction ="0" />
 		<dialogs>
 			<dialog text ="[fr]Bravo ! Vous avez réussi à désamorcer la bombe !
 
-Mais dépêchez-vous, il vous faut libérer les derniers robots et sortir.[/fr][en]Well done! You’ve successfully disarmed the bomb!
+Mais dépêchez-vous, il vous faut libérer les derniers robots et sortir.[/fr][en]Well done! You've successfully disarmed the bomb!
 
 But hurry up, you need to free the last robots and get out.[/en]" enableInteraction ="0" />
+		</dialogs>
+	</level>
+	<level src = "Levels/Desamorceur/Mission_15.xml" name = "Mission_15" >
+		<dialogs>
+			<dialog text ="[fr]Bravo Agent Bob !
+			
+Vous vous en êtes tous sortis sain et sauf ![/fr][en]Well done, Agent Bob!
+			
+You all made it out safe and sound![/en]" enableInteraction = "0"/>
+
+			<dialog text="[fr]Nous savions que nous pouvions compter sur vous !
+			
+Profitez de votre victoire et de votre famille ! 
+			
+Nous vous recontacterons.[/fr][en]We knew we could count on you!
+			
+Enjoy your victory and your family!
+			
+We'll contact you again soon.[/en]"/>
 		</dialogs>
 	</level>
 </scenario>
