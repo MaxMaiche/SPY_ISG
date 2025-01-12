@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 
 all_session_data = {}
 scenarios_dropdown = ["All"]
+total_clicks = 0
 
 # LRS Configuration
 LRS_ENDPOINT = "https://lrsels.lip6.fr/data/xAPI"
@@ -168,6 +169,7 @@ app.layout = html.Div([
         html.Label("Enter session codes (comma-separated):", style = {"color": "white", "margin-left": "10px"}),
         dcc.Input(id="session-names", type="text", placeholder="Enter session names...", style={"width": "200px", "margin-left": "10px"}),
         html.Button("Submit", id="submit-button", n_clicks=0, style={"margin-left": "10px"}),
+        html.Button("Clear", id="clear-button", n_clicks=0, style={"margin-left": "10px"}),
     ], style={"display":"flex", "align-items": "center", "justify-content":"center", "text-align": "center", "margin-bottom": "10px"}),
 
     # Section pour sélectionner un scénario
@@ -191,11 +193,17 @@ app.layout = html.Div([
     Input("submit-button", "n_clicks"),
     State("session-names", "value"),
     Input("scenario-dropdown", "value"),
+    Input("clear-button", "n_clicks"),
 )
 
-def update_dashboard(n_clicks, session_names, scenario_dropdown):
+def update_dashboard(n_clicks, session_names, scenario_dropdown, n_clicks_clear):
     global all_session_data
     global scenarios_dropdown
+    global total_clicks
+
+    if n_clicks_clear is not None and n_clicks_clear > total_clicks:
+        total_clicks = n_clicks_clear
+        return no_data_figure("No data available, please enter session code(s)")
 
     if not session_names:
         return no_data_figure("No data available, please enter session code(s)")
@@ -422,7 +430,26 @@ def update_scenario_dropdown(n_clicks):
         return []
     return [{"label": name, "value": name} for name in scenarios_dropdown]
 
+@app.callback(
+    Output("session-names", "value"),
+    Input("clear-button", "n_clicks"),
+)
+def clear_session_names(n_clicks):
+    global scenarios_dropdown
+    global all_session_data
+    scenarios_dropdown = ["All"]
+    all_session_data = {}
+    return ""
+
+# @app.callback(
+#     Output("dashboard-graph", "figure", allow_duplicate=True),
+#     Input("clear-button", "n_clicks"),
+# )
+
+# def clear_dashboard(n_clicks):
+#     return no_data_figure("No data available, please enter session code(s)")
+
 if __name__ == "__main__":
     port = 8050
     webbrowser.open(f"http://127.0.0.1:{port}")
-    app.run_server(debug=False, port = port)
+    app.run_server(debug=True, port = port)
