@@ -444,4 +444,4 @@ def clear_session_names(n_clicks):
 if __name__ == "__main__":
     port = 8050
     webbrowser.open(f"http://127.0.0.1:{port}")
-    app.run_server(debug=True, port = port)
+    app.run_server(debug=False, port = port)
