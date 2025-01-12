@@ -121,7 +121,11 @@ def generate_subplots(levels, max_scores, min_scores, avg_execution_times, max_e
         template="plotly_dark",
         barmode='group',
         bargap=0.1,
-        margin=dict(t=80, b=50, l=20, r=20),
+        margin=dict(t=50, b=50, l=20, r=20),
+        xaxis=dict(automargin=True),
+        xaxis2=dict(automargin=True),
+        xaxis3=dict(automargin=True),
+        xaxis4=dict(automargin=True),
     )
     return fig
 
@@ -157,7 +161,7 @@ def no_data_figure(text):
     return default_figure
 
 app.layout = html.Div([
-    html.H2("SPY Dashboard", style={"text-align": "center", "color": "white"}),
+    html.H1("SPY Dashboard", style={"text-align": "center", "color": "white", "font-size": "20px"}),
 
     # Section pour saisir les noms des sessions
     html.Div([
@@ -179,7 +183,7 @@ app.layout = html.Div([
     ], style={"display":"flex", "align-items": "center", "justify-content":"center", "text-align": "center", "margin-bottom": "10px"}),
 
     # Graphique du tableau de bord
-    dcc.Graph(id="dashboard-graph", figure = no_data_figure("No data available"), style={"height": "80vh", "width": "98%", "margin-left": "10px", "margin-right": "10px", "margin-bottom": "10px"}),
+    dcc.Graph(id="dashboard-graph", figure = no_data_figure("No data available"), style={"height": "80vh", "width": "98%", "margin-left": "10px", "margin-bottom": "10px"}),
 ])
 
 @app.callback(
