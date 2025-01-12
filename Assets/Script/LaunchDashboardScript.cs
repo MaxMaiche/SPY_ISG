@@ -16,7 +16,7 @@ class Program: MonoBehaviour
     {
 
         // Chemin vers l'exécutable Python
-        string pythonPath = @"python.exe";
+        string pythonPath = @"python3.11.exe";
 
         // Chemin vers le script Python
         string scriptPath = @"dashboard_dash_plotly.py";
