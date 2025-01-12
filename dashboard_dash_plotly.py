@@ -9,11 +9,7 @@ from urllib.parse import urljoin
 import webbrowser
 import xml.etree.ElementTree as ET
 
-all_session_names = []
 all_session_data = {}
-launched_responses = {}
-completed_responses = {}
-executed_responses = {}
 scenarios_dropdown = ["All"]
 
 # LRS Configuration
@@ -93,7 +89,7 @@ def format_level_name(level_name, scenario_dropdown):
         return parts[-1]
 
 # Generate subplots
-def generate_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_launched):
+def generate_subplots(levels, max_scores, min_scores, avg_execution_times, max_execution_times, min_execution_times, level_scores, cpt_executed):
 
     fig = make_subplots(
         rows=2, cols=2,
@@ -118,8 +114,8 @@ def generate_subplots(levels, max_scores, min_scores, avg_execution_times, max_e
     for level, scores in level_scores.items():
         fig.add_trace(go.Box(y=scores, name=level, boxmean=True, showlegend=False), row=2, col=1)
 
-    # Number of Launched Levels
-    fig.add_trace(go.Bar(x=list(cpt_launched.keys()), y=list(cpt_launched.values()), name='Number of Launched', marker_color='darkred', legendgroup="launch_counts"), row=2, col=2)
+    # Number of Executed Levels
+    fig.add_trace(go.Bar(x=list(cpt_executed.keys()), y=list(cpt_executed.values()), name='Number of Executed', marker_color='darkred', legendgroup="executed_counts"), row=2, col=2)
 
     fig.update_layout(
         template="plotly_dark",
@@ -132,32 +128,36 @@ def generate_subplots(levels, max_scores, min_scores, avg_execution_times, max_e
 # Initialize Dash App
 app = Dash(__name__)
 
-default_figure = {
-    "data": [],
-    "layout": {
-        "plot_bgcolor": "black",
-        "paper_bgcolor": "black",
-        "xaxis": {"visible": False},
-        "yaxis": {"visible": False},
-        "font": {"color": "white"},
-        "annotations": [
-            {
-                "text": "No data available",
-                "xref": "paper",
-                "yref": "paper",
-                "showarrow": False,
-                "font": {"size": 20, "color": "white"},
-                "x": 0.5,
-                "y": 0.5,
-                "xanchor": "center",
-                "yanchor": "middle",
-            }
-        ],
-    },
-}
+# Default figure when there is no session codes entered or no data available
+def no_data_figure(text):
+    default_figure = {
+        "data": [],
+        "layout": {
+            "plot_bgcolor": "black",
+            "paper_bgcolor": "black",
+            "xaxis": {"visible": False},
+            "yaxis": {"visible": False},
+            "font": {"color": "white"},
+            "annotations": [
+                {
+                    "text": text,
+                    "xref": "paper",
+                    "yref": "paper",
+                    "showarrow": False,
+                    "font": {"size": 20, "color": "white"},
+                    "x": 0.5,
+                    "y": 0.5,
+                    "xanchor": "center",
+                    "yanchor": "middle",
+                }
+            ],
+        },
+    }
+
+    return default_figure
 
 app.layout = html.Div([
-    html.H1("SPY Dashboard", style={"text-align": "center", "color": "white"}),
+    html.H2("SPY Dashboard", style={"text-align": "center", "color": "white"}),
 
     # Section pour saisir les noms des sessions
     html.Div([
@@ -179,7 +179,7 @@ app.layout = html.Div([
     ], style={"display":"flex", "align-items": "center", "justify-content":"center", "text-align": "center", "margin-bottom": "10px"}),
 
     # Graphique du tableau de bord
-    dcc.Graph(id="dashboard-graph", figure = default_figure, style={"height": "80vh", "width": "98%", "margin-left": "10px", "margin-right": "10px", "margin-bottom": "10px"}),
+    dcc.Graph(id="dashboard-graph", figure = no_data_figure("No data available"), style={"height": "80vh", "width": "98%", "margin-left": "10px", "margin-right": "10px", "margin-bottom": "10px"}),
 ])
 
 @app.callback(
@@ -190,15 +190,11 @@ app.layout = html.Div([
 )
 
 def update_dashboard(n_clicks, session_names, scenario_dropdown):
-    global all_session_names
     global all_session_data
-    global launched_responses
-    global completed_responses
-    global executed_responses
     global scenarios_dropdown
 
     if not session_names:
-        return default_figure
+        return no_data_figure("No data available, please enter session code(s)")
 
     session_names = [name.strip() for name in session_names.split(",")]
     for session_name in session_names:
@@ -221,6 +217,9 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
         if executed_response:
             process_lrs_response(executed_response, executed_data)
 
+        if launched_data == [] and completed_data == [] and executed_data == []:
+            return no_data_figure(f"No data available for session {session_name}, or invalid session code")
+
         for d in launched_data:
             d['timestamp'] = d['timestamp'][0:-2] + "Z"
             d['timestamp'] = d['timestamp'].replace("Z", "+00:00")
@@ -239,7 +238,6 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
         level_scores = {}
         level_execution_times = {}
         scenarios = {}
-        cpt_launched = {}
         cpt_executed = {}
         for launched in launched_data:
             launched_timestamp = datetime.fromisoformat(launched['timestamp'].replace("Z", "+00:00"))
@@ -249,16 +247,62 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
                 None
             )
             if matching_executed:
+                
                 level_name = launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
-                if level_name not in cpt_executed:
-                    cpt_executed[level_name] = 0
-                cpt_executed[level_name] += 1
 
+                # Récupérer le scénario associé à ce niveau, et mettre à jour la liste des scénarios
                 scenario = launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/context'][0]
                 if scenario not in scenarios_dropdown:
                     scenarios_dropdown.append(scenario)
                 if level_name not in scenarios:
                     scenarios[level_name] = scenario
+
+        for executed in executed_data:
+            executed_timestamp = datetime.fromisoformat(executed['timestamp'].replace("Z", "+00:00"))
+
+            # Trouver le dernier launched ou exectuted avant cet executed (le plus proche en temps)
+            matching_launched = next(
+                (l for l in reversed(launched_data)
+                 if datetime.fromisoformat(l['timestamp'].replace("Z", "+00:00")) <= executed_timestamp),
+                None
+            )
+
+            exec_data = executed_data.copy()
+            exec_data.remove(executed)
+
+            matching_executed = next(
+                (l for l in reversed(exec_data)
+                 if datetime.fromisoformat(l['timestamp'].replace("Z", "+00:00")) <= executed_timestamp),
+                None
+            )
+
+            matching = None
+
+            if matching_launched and matching_executed:
+                if datetime.fromisoformat(matching_launched['timestamp'].replace("Z", "+00:00")) > datetime.fromisoformat(matching_executed['timestamp'].replace("Z", "+00:00")):
+                    matching = matching_launched
+                else:
+                    matching = matching_executed
+            
+            if not matching:
+                matching = matching_launched
+
+            if matching_launched:
+                level_name = matching_launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
+                level_xml_path = streaming_asset_path + level_name
+
+                # Compter le nombre de fois où le niveau a été exécuté
+                if level_name not in cpt_executed:
+                    cpt_executed[level_name] = 0
+                cpt_executed[level_name] += 1
+
+                #Calculer le temps d'exécution
+                execution_time = (executed_timestamp - datetime.fromisoformat(matching['timestamp'].replace("Z", "+00:00"))).total_seconds()
+                print(execution_time)
+                if level_name not in level_execution_times:
+                    level_execution_times[level_name] = []
+                level_execution_times[level_name].append(execution_time)
+
 
         for completed in completed_data:
             completed_timestamp = datetime.fromisoformat(completed['timestamp'].replace("Z", "+00:00"))
@@ -278,11 +322,6 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
             if matching_launched:
                 level_name = matching_launched['object']['definition']['extensions']['https://spy.lip6.fr/xapi/extensions/value'][0]
                 level_xml_path = streaming_asset_path + level_name
-
-                # Incrémentation du nombre de lancement
-                if level_name not in cpt_launched:
-                    cpt_launched[level_name] = 0
-                cpt_launched[level_name] += 1
                 
                 stars_scores = parse_xml(level_xml_path)
                 if not stars_scores:
@@ -296,22 +335,9 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
                     level_scores[level_name] = []
                 level_scores[level_name].append(completed_score / max_score)
 
-                # Calculer le temps d'exécution
-                execution_time = (completed_timestamp - datetime.fromisoformat(matching_launched['timestamp'].replace("Z", "+00:00"))).total_seconds()
-                if level_name not in level_execution_times:
-                    level_execution_times[level_name] = []
-                level_execution_times[level_name].append(execution_time)
-
         levels = list(level_scores.keys())
-        #print(levels)
         max_scores = [max(scores) if scores else 0 for scores in level_scores.values()]
         min_scores = [min(scores) if scores else 0 for scores in level_scores.values()]
-
-        # for level, max_score in zip(levels, max_scores):
-        #     print(f"Niveau: {level} - Score Max: {max_score}")
-
-        # for level, min_score in zip(levels, min_scores):
-        #     print(f"Niveau: {level} - Score Min: {min_score}")
 
         avg_execution_times = [sum(times) / len(times) if times else 0 for times in level_execution_times.values()]
         max_execution_times = [max(times) if times else 0 for times in level_execution_times.values()]
@@ -325,7 +351,7 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
             "max_execution_times": max_execution_times,
             "min_execution_times": min_execution_times,
             "level_scores": level_scores,
-            "cpt_launched": cpt_executed,
+            "cpt_executed": cpt_executed,
             "scenarios" : scenarios
         }
 
@@ -342,7 +368,7 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
             "max_execution_time": [],
             "min_execution_time": [],
             "scores": [],
-            "launch_counts": [],
+            "executed_counts": [],
         }
         for session_name, data in all_session_data.items():
             if session_name in session_names:
@@ -354,20 +380,29 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown):
                     combined_data[level]["max_execution_time"].append(data["max_execution_times"][idx])
                     combined_data[level]["min_execution_time"].append(data["min_execution_times"][idx])
                     combined_data[level]["scores"].extend(data["level_scores"][level])
-                    combined_data[level]["launch_counts"].append(data["cpt_launched"].get(level, 0))
+                    combined_data[level]["executed_counts"].append(data["cpt_executed"].get(level, 0))
 
     if len(session_names) > 1 or True:
+
+        for level, data in combined_data.items():
+            if "13" in level:
+                print(level, data)
+    
         # Trier les niveaux par ordre alphabétique
         levels = sorted(combined_data.keys())
         # Réorganiser les données dans le même ordre
         sorted_combined_data = {level: combined_data[level] for level in levels}
+
+        for level, data in sorted_combined_data.items():
+            if "13" in level:
+                print(level, data)
 
         max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in sorted_combined_data.values()]
         min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in sorted_combined_data.values()]
         avg_execution_times = [sum(data["avg_execution_time"]) / len(data["avg_execution_time"]) for data in sorted_combined_data.values()]
         max_execution_times = [sum(data["max_execution_time"]) / len(data["max_execution_time"]) for data in sorted_combined_data.values()]
         min_execution_times = [sum(data["min_execution_time"]) / len(data["min_execution_time"]) for data in sorted_combined_data.values()]
-        cpt_executed = [sum(data["launch_counts"]) / len(data["launch_counts"]) for data in sorted_combined_data.values()]
+        cpt_executed = [sum(data["executed_counts"]) / len(data["executed_counts"]) for data in sorted_combined_data.values()]
         level_scores = {level: data["scores"] for level, data in sorted_combined_data.items()}
 
     levels = [format_level_name(level, scenario_dropdown) for level in levels]
