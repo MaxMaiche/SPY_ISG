@@ -71,7 +71,7 @@
 
 	<decoration name="Modern Furniture/Prefabs/Single Frame chair" posX="3" posY="4" direction="2" />
 
-	<script outputLine="Bob" editMode="2" type="3">
+	<script outputLine="Bob" editMode="0" type="3">
 	</script>
 
 </level>
