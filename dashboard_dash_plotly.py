@@ -310,7 +310,7 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown, n_clicks_clear)
 
                 #Calculer le temps d'exécution
                 execution_time = (executed_timestamp - datetime.fromisoformat(matching['timestamp'].replace("Z", "+00:00"))).total_seconds()
-                print(execution_time)
+                
                 if level_name not in level_execution_times:
                     level_execution_times[level_name] = []
                 level_execution_times[level_name].append(execution_time)
@@ -395,19 +395,11 @@ def update_dashboard(n_clicks, session_names, scenario_dropdown, n_clicks_clear)
                     combined_data[level]["executed_counts"].append(data["cpt_executed"].get(level, 0))
 
     if len(session_names) > 1 or True:
-
-        for level, data in combined_data.items():
-            if "13" in level:
-                print(level, data)
     
         # Trier les niveaux par ordre alphabétique
         levels = sorted(combined_data.keys())
         # Réorganiser les données dans le même ordre
         sorted_combined_data = {level: combined_data[level] for level in levels}
-
-        for level, data in sorted_combined_data.items():
-            if "13" in level:
-                print(level, data)
 
         max_scores = [sum(data["max_score"]) / len(data["max_score"]) for data in sorted_combined_data.values()]
         min_scores = [sum(data["min_score"]) / len(data["min_score"]) for data in sorted_combined_data.values()]
